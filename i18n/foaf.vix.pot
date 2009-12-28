@@ -1,0 +1,170 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR YOUR-NAME
+# This file is distributed under the same license as the foaf.vix package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: foaf.vix 1.0\n"
+"Report-Msgid-Bugs-To: polak@gnu.org\n"
+"POT-Creation-Date: 2008-08-12 09:53:39-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: en.xml:2
+msgid "powered by FOAF.Vix"
+msgstr ""
+
+#: en.xml:3
+msgid "The FOAF card"
+msgstr ""
+
+#: en.xml:4
+msgid "what's this?"
+msgstr ""
+
+#: en.xml:5
+msgid "See what Wikipedia says about FOAF"
+msgstr ""
+
+#: en.xml:6
+msgid "Members"
+msgstr ""
+
+#: en.xml:7
+msgid "Unknown format"
+msgstr ""
+
+#: en.xml:8
+msgid "Group:"
+msgstr ""
+
+#: en.xml:9
+msgid "Nick:"
+msgstr ""
+
+#: en.xml:10
+msgid "Birthday:"
+msgstr ""
+
+#: en.xml:11
+msgid "Date of birth:"
+msgstr ""
+
+#: en.xml:12
+msgid "Blog:"
+msgstr ""
+
+#: en.xml:13
+msgid "E-mail"
+msgstr ""
+
+#: en.xml:14
+msgid "Jabber"
+msgstr ""
+
+#: en.xml:15
+msgid "ICQ"
+msgstr ""
+
+#: en.xml:16
+msgid "MSN"
+msgstr ""
+
+#: en.xml:17
+msgid "AIM"
+msgstr ""
+
+#: en.xml:18
+msgid "Yahoo"
+msgstr ""
+
+#: en.xml:19
+msgid "Phone"
+msgstr ""
+
+#: en.xml:20
+msgid "WWW"
+msgstr ""
+
+#: en.xml:21
+msgid "Online account:"
+msgstr ""
+
+#: en.xml:22
+msgid "Plan:"
+msgstr ""
+
+#: en.xml:23
+msgid "Geek Code:"
+msgstr ""
+
+#: en.xml:24
+msgid "Event:"
+msgstr ""
+
+#: en.xml:25
+msgid "Current project:"
+msgstr ""
+
+#: en.xml:26
+msgid "Past project:"
+msgstr ""
+
+#: en.xml:27
+msgid "School:"
+msgstr ""
+
+#: en.xml:28
+msgid "Interest:"
+msgstr ""
+
+#: en.xml:29
+msgid "Knows:"
+msgstr ""
+
+#: en.xml:30
+msgid "more »"
+msgstr ""
+
+#: en.xml:31
+msgid "See also:"
+msgstr ""
+
+#: en.xml:32
+msgid "source"
+msgstr ""
+
+#: en.xml:33
+msgid "expand"
+msgstr ""
+
+#: en.xml:34
+msgid "Work"
+msgstr ""
+
+#: en.xml:35
+msgid "Workplace"
+msgstr ""
+
+#: en.xml:36
+msgid "Pubkey"
+msgstr ""
+
+#: en.xml:37
+msgid "Home address:"
+msgstr ""
+
+#: en.xml:38
+msgid "Office address:"
+msgstr ""
+
+#: en.xml:39
+msgid "Description"
+msgstr ""
+

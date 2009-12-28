@@ -1,0 +1,169 @@
+# Spanish messages for foaf.vix
+# Copyright (C) 2008 Sergey Poznyakoff
+# This file is distributed under the same license as the foaf.vix package.
+# Sergey Poznyakoff <gray@gnu.org.ua>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: foaf.vix 1.0\n"
+"Report-Msgid-Bugs-To: polak@gnu.org\n"
+"POT-Creation-Date: 2008-08-12 09:53:39-0300\n"
+"PO-Revision-Date: 2008-08-12 12:57+0200\n"
+"Last-Translator: Sergey Poznyakoff <gray@gnu.org.ua>\n"
+"Language-Team: Spanish <es@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: en.xml:2
+msgid "powered by FOAF.Vix"
+msgstr "powered by FOAF.Vix"
+
+#: en.xml:3
+msgid "The FOAF card"
+msgstr "Entrada FOAF"
+
+#: en.xml:4
+msgid "what's this?"
+msgstr "¿qué es esto?"
+
+#: en.xml:5
+msgid "See what Wikipedia says about FOAF"
+msgstr "¿Qué dice Wikipedia sobre FOAF?"
+
+#: en.xml:6
+msgid "Members"
+msgstr "Miembros"
+
+#: en.xml:7
+msgid "Unknown format"
+msgstr "Formato desconocido"
+
+#: en.xml:8
+msgid "Group:"
+msgstr "Grupo:"
+
+#: en.xml:9
+msgid "Nick:"
+msgstr "Sobrenombre:"
+
+#: en.xml:10
+msgid "Birthday:"
+msgstr "Cumpleaños:"
+
+#: en.xml:11
+msgid "Date of birth:"
+msgstr "Fecha de nacimiento:"
+
+#: en.xml:12
+msgid "Blog:"
+msgstr "Blog:"
+
+#: en.xml:13
+msgid "E-mail"
+msgstr "Correo electrónico"
+
+#: en.xml:14
+msgid "Jabber"
+msgstr "Jabber"
+
+#: en.xml:15
+msgid "ICQ"
+msgstr "ICQ"
+
+#: en.xml:16
+msgid "MSN"
+msgstr "MSN"
+
+#: en.xml:17
+msgid "AIM"
+msgstr "AIM"
+
+#: en.xml:18
+msgid "Yahoo"
+msgstr "Yahoo"
+
+#: en.xml:19
+msgid "Phone"
+msgstr "Teléfono"
+
+#: en.xml:20
+msgid "WWW"
+msgstr "WWW"
+
+#: en.xml:21
+msgid "Online account:"
+msgstr "Cuentas de red:"
+
+#: en.xml:22
+msgid "Plan:"
+msgstr "Plano:"
+
+#: en.xml:23
+msgid "Geek Code:"
+msgstr "Código Geek:"
+
+#: en.xml:24
+msgid "Event:"
+msgstr "Evento:"
+
+#: en.xml:25
+msgid "Current project:"
+msgstr "Proyecto actual:"
+
+#: en.xml:26
+msgid "Past project:"
+msgstr "Proyecto pasado:"
+
+#: en.xml:27
+msgid "School:"
+msgstr "Escuela:"
+
+#: en.xml:28
+msgid "Interest:"
+msgstr "Intereses personales:"
+
+#: en.xml:29
+msgid "Knows:"
+msgstr "Conoce a:"
+
+#: en.xml:30
+msgid "more »"
+msgstr "mas »"
+
+#: en.xml:31
+msgid "See also:"
+msgstr "Mira también:"
+
+#: en.xml:32
+msgid "source"
+msgstr "fuente"
+
+#: en.xml:33
+msgid "expand"
+msgstr "expandir"
+
+#: en.xml:34
+msgid "Work"
+msgstr "Trabajo"
+
+#: en.xml:35
+msgid "Workplace"
+msgstr "Trabajo"
+
+#: en.xml:36
+msgid "Pubkey"
+msgstr "Clave pública"
+
+#: en.xml:37
+msgid "Home address:"
+msgstr "Dirección:"
+
+#: en.xml:38
+msgid "Office address:"
+msgstr "Dirección de trabajo:"
+
+#: en.xml:39
+msgid "Description"
+msgstr "Descripción"

@@ -1,0 +1,176 @@
+# Japanese messages for foaf.vix
+# Copyright (C) 2008 Sergey Poznyakoff
+# This file is distributed under the same license as the foaf.vix package.
+# Sergey Poznyakoff <gray@gnu.org.ua>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: foaf.vix 1.0\n"
+"Report-Msgid-Bugs-To: polak@gnu.org\n"
+"POT-Creation-Date: 2007-08-28 10:33+0300\n"
+"PO-Revision-Date: 2008-04-25 16:19+0300\n"
+"Last-Translator: Sergey Poznyakoff <gray@gnu.org.ua>\n"
+"Language-Team: Japanese <ja@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=EUC-JP\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: en.xml:2
+msgid "powered by FOAF.Vix"
+msgstr "powered by FOAF.Vix"
+
+#: en.xml:3
+msgid "The FOAF entry"
+msgstr "FOAF エントリ"
+
+#: en.xml:4
+msgid "what's this?"
+msgstr "此は何ですか？"
+
+#: en.xml:5
+msgid "See what Wikipedia says about FOAF"
+msgstr "FOAFについてウイキペヂイア何話しますか。"
+
+#: en.xml:6
+msgid "Members"
+msgstr "成員"
+
+#: en.xml:7
+msgid "Unknown format"
+msgstr "不明なフォーマット"
+
+#: en.xml:8
+msgid "Group:"
+msgstr "グループ"
+
+#: en.xml:9
+msgid "Nick:"
+msgstr "綽名"
+
+#: en.xml:10
+msgid "Birthday:"
+msgstr "誕生日"
+
+# FIXME: Don't know if 'tanjo:no jijitsu' is right
+#: en.xml:11
+msgid "Date of birth:"
+msgstr "誕生の時日"
+
+#: en.xml:12
+msgid "Blog:"
+msgstr "Blog:"
+
+#: en.xml:13
+msgid "E-mail"
+msgstr "電子メール"
+
+#: en.xml:14
+msgid "Jabber"
+msgstr "Jabber"
+
+#: en.xml:15
+msgid "ICQ"
+msgstr "ICQ"
+
+#: en.xml:16
+msgid "MSN"
+msgstr "MSN"
+
+#: en.xml:17
+msgid "AIM"
+msgstr "AIM"
+
+#: en.xml:18
+msgid "Yahoo"
+msgstr "Yahoo"
+
+#: en.xml:19
+msgid "Phone"
+msgstr "電話"
+
+#: en.xml:20
+msgid "WWW"
+msgstr "WWW"
+
+#: en.xml:21
+msgid "Online account:"
+msgstr "オンラインアカウント："
+
+# That's awful, but it can be プラン as well (!!)
+#: en.xml:22
+msgid "Plan:"
+msgstr "計画："
+
+# Hmm... Not sure. Geek is オタク, but...
+#: en.xml:23
+msgid "Geek Code:"
+msgstr "オタクのコード:"
+
+# FIXME: They say イベント... But I don't like it:)
+#: en.xml:24
+msgid "Event:"
+msgstr "出来事"
+
+#: en.xml:25
+msgid "Current project:"
+msgstr "現在のプロジェクト:"
+
+#: en.xml:26
+msgid "Past project:"
+msgstr "前のプロジェクト:"
+
+#: en.xml:27
+msgid "School:"
+msgstr "学校："
+
+#: en.xml:28
+msgid "Interest:"
+msgstr "興味："
+
+# 知ります
+#: en.xml:29
+msgid "Knows:"
+msgstr "知人："
+
+#: en.xml:30
+msgid "more 損"
+msgstr "より多く"
+
+#: en.xml:31
+msgid "See also:"
+msgstr "こちらも参照:"
+
+#: en.xml:32
+msgid "source"
+msgstr "ソース"
+
+#: en.xml:33
+msgid "expand"
+msgstr "展開"
+
+#: en.xml:34
+msgid "Work"
+msgstr "仕事"
+
+#: en.xml:35
+msgid "Workplace"
+msgstr "職場"
+
+#: en.xml:36
+msgid "Pubkey"
+msgstr "公開鍵"
+
+
+#: en.xml:37
+msgid "Home address:"
+msgstr "住所："
+
+#: en.xml:38
+msgid "Office address:"
+msgstr "会社の宛名："
+
+#: en.xml:39
+msgid "Description"
+msgstr "記述"
+
