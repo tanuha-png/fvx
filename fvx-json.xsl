@@ -1,5 +1,5 @@
 <!--
-    FOAF.Vix fvx-json.xsl (2009-02-21)
+    FOAF.Vix fvx-json.xsl (2009-12-29)
     Copyright (C) 2006, 2008, 2009 Wojciech Polak
 
     This program is free software; you can redistribute it and/or modify it
@@ -841,13 +841,22 @@
   <xsl:apply-templates
       select="contact:address |
 	      ../../contact:ContactLocation[@rdf:about = current()/@rdf:resource]"/>
-  <xsl:if test="geo:lat and geo:long">
-    <xsl:text>,"lat":"</xsl:text>
-    <xsl:value-of select="geo:lat"/>
-    <xsl:text>","long":"</xsl:text>
-    <xsl:value-of select="geo:long"/>
-    <xsl:text>"</xsl:text>
-  </xsl:if>
+  <xsl:choose>
+    <xsl:when test="geo:location">
+      <xsl:text>,"lat":"</xsl:text>
+      <xsl:value-of select="geo:location/geo:lat"/>
+      <xsl:text>","long":"</xsl:text>
+      <xsl:value-of select="geo:location/geo:long"/>
+      <xsl:text>"</xsl:text>
+    </xsl:when>
+    <xsl:when test="geo:lat and geo:long">
+      <xsl:text>,"lat":"</xsl:text>
+      <xsl:value-of select="geo:lat"/>
+      <xsl:text>","long":"</xsl:text>
+      <xsl:value-of select="geo:long"/>
+      <xsl:text>"</xsl:text>
+    </xsl:when>
+  </xsl:choose>
   <xsl:text>},</xsl:text>
 </xsl:template>
 

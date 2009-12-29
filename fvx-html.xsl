@@ -1,5 +1,5 @@
 <!--
-    FOAF.Vix fvx-html.xsl (2009-05-14)
+    FOAF.Vix fvx-html.xsl (2009-12-29)
     Copyright (C) 2006, 2008, 2009 Wojciech Polak
 
     This program is free software; you can redistribute it and/or modify it
@@ -1086,12 +1086,20 @@
       <xsl:apply-templates
 	  select="contact:address |
 		  ../../contact:ContactLocation[@rdf:about = current()/@rdf:resource]"/>
-      <xsl:if test="geo:lat and geo:long">
-	<xsl:call-template name="map-location">
-	  <xsl:with-param name="lat" select="geo:lat"/>
-	  <xsl:with-param name="long" select="geo:long"/>
-	</xsl:call-template>
-      </xsl:if>
+      <xsl:choose>
+	<xsl:when test="geo:location">
+	  <xsl:call-template name="map-location">
+	    <xsl:with-param name="lat" select="geo:location/geo:lat"/>
+	    <xsl:with-param name="long" select="geo:location/geo:long"/>
+	  </xsl:call-template>
+	</xsl:when>
+	<xsl:when test="geo:lat and geo:long">
+	  <xsl:call-template name="map-location">
+	    <xsl:with-param name="lat" select="geo:lat"/>
+	    <xsl:with-param name="long" select="geo:long"/>
+	  </xsl:call-template>
+	</xsl:when>
+      </xsl:choose>
     </td>
   </tr>
 </xsl:template>
