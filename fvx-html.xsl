@@ -1,5 +1,5 @@
 <!--
-    FOAF.Vix fvx-html.xsl (2009-12-29)
+    FOAF.Vix fvx-html.xsl (2009-12-30)
     Copyright (C) 2006, 2008, 2009 Wojciech Polak
 
     This program is free software; you can redistribute it and/or modify it
@@ -865,6 +865,23 @@
   </xsl:call-template>
 </xsl:template>
 
+<xsl:template match="geo:Point|geo:location">
+  <xsl:choose>
+    <xsl:when test="rdf:Description/geo:lat">
+      <xsl:call-template name="map-location">
+	<xsl:with-param name="lat" select="rdf:Description/geo:lat"/>
+	<xsl:with-param name="long" select="rdf:Description/geo:long"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:when test="geo:lat">
+      <xsl:call-template name="map-location">
+	<xsl:with-param name="lat" select="geo:lat"/>
+	<xsl:with-param name="long" select="geo:long"/>
+      </xsl:call-template>
+    </xsl:when>
+  </xsl:choose>
+</xsl:template>
+
 <xsl:template name="map-location">
   <xsl:param name="lat"/>
   <xsl:param name="long"/>
@@ -1086,20 +1103,13 @@
       <xsl:apply-templates
 	  select="contact:address |
 		  ../../contact:ContactLocation[@rdf:about = current()/@rdf:resource]"/>
-      <xsl:choose>
-	<xsl:when test="geo:location">
-	  <xsl:call-template name="map-location">
-	    <xsl:with-param name="lat" select="geo:location/geo:lat"/>
-	    <xsl:with-param name="long" select="geo:location/geo:long"/>
-	  </xsl:call-template>
-	</xsl:when>
-	<xsl:when test="geo:lat and geo:long">
-	  <xsl:call-template name="map-location">
-	    <xsl:with-param name="lat" select="geo:lat"/>
-	    <xsl:with-param name="long" select="geo:long"/>
-	  </xsl:call-template>
-	</xsl:when>
-      </xsl:choose>
+      <xsl:apply-templates select="geo:location|geo:Point|contact:address/geo:Point"/>
+      <xsl:if test="geo:lat and geo:long">
+	<xsl:call-template name="map-location">
+	  <xsl:with-param name="lat" select="geo:lat"/>
+	  <xsl:with-param name="long" select="geo:long"/>
+	</xsl:call-template>
+      </xsl:if>
     </td>
   </tr>
 </xsl:template>
