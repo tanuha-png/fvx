@@ -1,6 +1,6 @@
 <!--
-    FOAF.Vix fvx-html.xsl (2009-12-30)
-    Copyright (C) 2006, 2008, 2009 Wojciech Polak
+    FOAF.Vix fvx-html.xsl (2010-03-18)
+    Copyright (C) 2006, 2008, 2009, 2010 Wojciech Polak
 
     This program is free software; you can redistribute it and/or modify it
     under the terms of the GNU General Public License as published by the
@@ -117,7 +117,7 @@
 	    </div>
 	    <p id="footer">
 	      <a class="fvxlink" href="./">FOAF.Vix <xsl:value-of select="$VERSION"/></a>
-	      <xsl:text> Copyright (C) 2006-2009 </xsl:text>
+	      <xsl:text> Copyright (C) 2006-2010 </xsl:text>
 	      <a class="fvxlink"
 		 href="{$HOST}?uri=http://wojciechpolak.org/foaf.rdf">Wojciech Polak</a>
 	    </p>
@@ -203,11 +203,9 @@
 
 	<xsl:otherwise>
 	  <xsl:value-of select="key('fvx:MSG', 'unknownFormat')"/>
-	  <script type="text/javascript">
-	    <xsl:text>setTimeout(function(){window.location.replace('</xsl:text>
-	    <xsl:value-of select="$URI"/>
-	    <xsl:text>');}, 2000);</xsl:text>
-	  </script>
+	  <p class="source">
+	    <a href="{$URI}"><xsl:value-of select="$URI"/></a>
+	  </p>
 	</xsl:otherwise>
       </xsl:choose>
     </xsl:otherwise>
