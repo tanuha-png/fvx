@@ -34,8 +34,10 @@
   xmlns:ical="http://www.w3.org/2002/12/cal/icaltzd#"
   xmlns:doap="http://usefulinc.com/ns/doap#"
   xmlns:sioc="http://rdfs.org/sioc/ns#"
+  xmlns:rsa="http://www.w3.org/ns/auth/rsa#"
+  xmlns:cert="http://www.w3.org/ns/auth/cert#"
   xmlns:fvx="http://foaf-visualizer.org/"
-  exclude-result-prefixes="xsl rdf rdfs owl foaf bio rel rss dc dct contact vcard geo ical doap sioc fvx">
+  exclude-result-prefixes="xsl rdf rdfs owl foaf bio rel rss dc dct contact vcard geo ical doap sioc rsa cert fvx">
 
 <xsl:output method="html"/>
 
@@ -57,7 +59,8 @@
 		/rdf:RDF/contact:Male |
 		/rdf:RDF/contact:Female |
 		/rdf:RDF/sioc:User |
-		/rdf:RDF/rdf:Description"
+		/rdf:RDF/rdf:Description |
+		/rdf:RDF/rsa:RSAPublicKey/cert:identity/rdf:Description"
 	 use="@rdf:ID |
 	      @rdf:nodeID |
 	      @rdf:about"/>
@@ -133,6 +136,7 @@
       name="DEFAULT"
       select="foaf:PersonalProfileDocument[1]/foaf:primaryTopic/@rdf:nodeID |
 	      foaf:PersonalProfileDocument[1]/foaf:primaryTopic/@rdf:resource |
+	      rsa:RSAPublicKey/cert:identity/rdf:Description/foaf:openid/foaf:PersonalProfileDocument/foaf:primaryTopic/@rdf:resource |
 	      rdf:Description/foaf:primaryTopic/@rdf:resource |
 	      rdf:Description[rdf:type/@rdf:resource = 'http://xmlns.com/foaf/0.1/PersonalProfileDocument']/foaf:primaryTopic/@rdf:nodeID"/>
 
@@ -219,6 +223,7 @@
 		     contact:Male |
 		     contact:Female |
 		     dct:Agent |
+		     rdf:Description[parent::cert:identity] |
 		     rdf:Description[rdf:type/@rdf:resource = 'http://xmlns.com/foaf/0.1/Person']">
   <div class="vcard person">
     <xsl:choose>
@@ -290,6 +295,19 @@
 	    <xsl:text> </xsl:text>
 	    <span class="family-name">
 	      <xsl:value-of select="foaf:surname"/>
+	    </span>
+	  </span>
+	</div>
+      </xsl:when>
+      <xsl:when test="foaf:givenName and foaf:familyName">
+	<div class="personName">
+	  <span class="fn n person-name">
+	    <span class="given-name">
+	      <xsl:value-of select="foaf:givenName"/>
+	    </span>
+	    <xsl:text> </xsl:text>
+	    <span class="family-name">
+	      <xsl:value-of select="foaf:familyName"/>
 	    </span>
 	  </span>
 	</div>
@@ -384,7 +402,8 @@
       </xsl:choose>
 
       <xsl:if test="foaf:weblog/@rdf:resource or
-		    foaf:weblog/foaf:Document/@rdf:about">
+		    foaf:weblog/foaf:Document/@rdf:about or
+		    foaf:blog/@rdf:resource">
 	<tr class="weblog" valign="top">
 	  <td class="fieldName td1">
 	    <xsl:value-of select="key('fvx:MSG', 'weblog:')"/>
@@ -393,10 +412,12 @@
 	    <a class="url">
 	      <xsl:attribute name="href">
 		<xsl:value-of select="foaf:weblog/@rdf:resource |
-				      foaf:weblog/foaf:Document/@rdf:about"/>
+				      foaf:weblog/foaf:Document/@rdf:about |
+				      foaf:blog/@rdf:resource"/>
 	      </xsl:attribute>
 	      <xsl:value-of select="foaf:weblog/@rdf:resource |
-				    foaf:weblog/foaf:Document/@rdf:about"/>
+				    foaf:weblog/foaf:Document/@rdf:about |
+				    foaf:blog/@rdf:resource"/>
 	    </a>
 	    <xsl:if test="rdfs:seeAlso/rss:channel or
 			  foaf:weblog/foaf:Document/rdfs:seeAlso/@rdf:resource">

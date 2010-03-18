@@ -1,6 +1,6 @@
 <!--
-    FOAF.Vix fvx-json.xsl (2009-12-30)
-    Copyright (C) 2006, 2008, 2009 Wojciech Polak
+    FOAF.Vix fvx-json.xsl (2010-03-18)
+    Copyright (C) 2006, 2008, 2009, 2010 Wojciech Polak
 
     This program is free software; you can redistribute it and/or modify it
     under the terms of the GNU General Public License as published by the
@@ -34,8 +34,10 @@
   xmlns:ical="http://www.w3.org/2002/12/cal/icaltzd#"
   xmlns:doap="http://usefulinc.com/ns/doap#"
   xmlns:sioc="http://rdfs.org/sioc/ns#"
+  xmlns:rsa="http://www.w3.org/ns/auth/rsa#"
+  xmlns:cert="http://www.w3.org/ns/auth/cert#"
   xmlns:fvx="http://foaf-visualizer.org/"
-  exclude-result-prefixes="xsl rdf rdfs owl foaf bio rel rss dc dct contact vcard geo ical doap sioc fvx">
+  exclude-result-prefixes="xsl rdf rdfs owl foaf bio rel rss dc dct contact vcard geo ical doap sioc rsa cert fvx">
 
 <xsl:output method="text"/>
 
@@ -50,7 +52,8 @@
 		/rdf:RDF/contact:Male |
 		/rdf:RDF/contact:Female |
 		/rdf:RDF/sioc:User |
-		/rdf:RDF/rdf:Description"
+		/rdf:RDF/rdf:Description |
+		/rdf:RDF/rsa:RSAPublicKey/cert:identity/rdf:Description"
 	 use="@rdf:ID |
 	      @rdf:nodeID |
 	      @rdf:about"/>
@@ -74,6 +77,7 @@
       name="DEFAULT"
       select="foaf:PersonalProfileDocument[1]/foaf:primaryTopic/@rdf:nodeID |
 	      foaf:PersonalProfileDocument[1]/foaf:primaryTopic/@rdf:resource |
+	      rsa:RSAPublicKey/cert:identity/rdf:Description/foaf:openid/foaf:PersonalProfileDocument/foaf:primaryTopic/@rdf:resource |
 	      rdf:Description/foaf:primaryTopic/@rdf:resource |
 	      rdf:Description[rdf:type/@rdf:resource = 'http://xmlns.com/foaf/0.1/PersonalProfileDocument']/foaf:primaryTopic/@rdf:nodeID"/>
 
@@ -166,6 +170,7 @@
 		     contact:Male |
 		     contact:Female |
 		     dct:Agent |
+		     rdf:Description[parent::cert:identity] |
 		     rdf:Description[rdf:type/@rdf:resource = 'http://xmlns.com/foaf/0.1/Person']">
 
   <xsl:text>{</xsl:text>
@@ -176,6 +181,14 @@
       <xsl:apply-templates select="foaf:firstName[1]" mode="sv"/>
       <xsl:text>,"familyName":</xsl:text>
       <xsl:apply-templates select="foaf:surname[1]" mode="sv"/>
+      <xsl:text>},</xsl:text>
+    </xsl:when>
+    <xsl:when test="foaf:givenName and foaf:familyName">
+      <xsl:text>"fn":{"givenName":</xsl:text>
+      <xsl:apply-templates select="foaf:givenName[1]" mode="sv"/>
+      <xsl:text>,</xsl:text>
+      <xsl:text>"familyName":</xsl:text>
+      <xsl:apply-templates select="foaf:familyName[1]" mode="sv"/>
       <xsl:text>},</xsl:text>
     </xsl:when>
     <xsl:when test="foaf:givenname and foaf:family_name">
@@ -280,10 +293,12 @@
   </xsl:choose>
 
   <xsl:if test="foaf:weblog/@rdf:resource or
-		foaf:weblog/foaf:Document/@rdf:about">
+		foaf:weblog/foaf:Document/@rdf:about or
+		foaf:blog/@rdf:resource">
     <xsl:text>"weblog":"</xsl:text>
     <xsl:value-of select="foaf:weblog/@rdf:resource |
-			  foaf:weblog/foaf:Document/@rdf:about"/>
+			  foaf:weblog/foaf:Document/@rdf:about |
+			  foaf:blog/@rdf:resource"/>
     <xsl:text>",</xsl:text>
     <xsl:if test="rdfs:seeAlso/rss:channel or
 		  foaf:weblog/foaf:Document/rdfs:seeAlso/@rdf:resource">
