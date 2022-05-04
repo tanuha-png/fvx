@@ -1,4 +1,6 @@
-from flask import Flask, request
+from flask import (
+    Flask, request, url_for,
+    send_from_directory, make_response)
 
 from markupsafe import escape
 import requests as rq
@@ -9,7 +11,7 @@ app = Flask(__name__)
 
 # app.route('/<path:subpath>')
 
-BASE_URL = "http://localhost:5000/"
+BASE_URL = "http://localhost:5000/static/"
 
 HTML_DEF = """<html>
  <head>
@@ -37,7 +39,17 @@ def show_subpath():
         kg = '\n'.join(kgs)
     except KeyError:
         return HTML_DEF
-    return kg
+    resp = make_response(kg)
+    resp.content_type = "text/xml"
+    return resp
 
 
-url_for('static', filename='fvx-html.xsl')
+@app.route('/static/<path:path>')
+def send_report(path):
+    return send_from_directory('static', path)
+
+
+# url_for('static', filename='fvx-html.xsl')
+# url_for('static', filename='fvx-json.xsl')
+# url_for('static', filename='foaf-vix.css')
+# url_for('static', filename='foaf-vix.js')
