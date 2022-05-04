@@ -5,6 +5,8 @@ from flask import (
 from markupsafe import escape
 import requests as rq
 from lxml.html import fromstring
+from SPARQLWrapper import SPARQLWrapper, JSON, XML, RDFXML
+from json import dumps
 
 
 app = Flask(__name__)
@@ -47,6 +49,50 @@ def show_subpath():
 @app.route('/static/<path:path>')
 def send_report(path):
     return send_from_directory('static', path)
+
+
+POL_SERVER_EP = "http://irnok.net:3030/sparql"
+
+GET_SAMPLES = """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dbp: <http://dbpedia.org/page/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+SELECT ?probe ?lat ?long WHERE {
+  ?probe a <http://dbpedia.org/page/Sample_(material)> .
+  ?probe wgs:lat ?lat .
+  ?probe wgs:long ?long .
+}
+
+LIMIT 10"""
+
+LIST_HTML = """
+ <head>
+  <meta charset="utf-8" />
+ </head>
+ <body>
+  <ul>
+  {}
+  </ul>
+ </body>
+</html>
+"""
+
+
+@app.route('/samples')
+def sample_list():
+    sparql = SPARQLWrapper("http://irnok.net:3030/sparql")
+    # sparql.setReturnFormat(RDFXML)
+    sparql.setReturnFormat(JSON)
+    sparql.setQuery(GET_SAMPLES)
+    results = sparql.queryAndConvert()
+    # probes = [r['probe']['value'] for r in results["results"]["bindings"]]
+    probes = [[r['probe']['value'],
+               r["lat"]["value"],
+               r['long']['value']] for r in results["results"]["bindings"]]
+    lp = "\n<br/>".join(["<li>{} {} {}</li>".format(*p) for p in probes])
+    return LIST_HTML.format(lp)
+    # return dumps(results["results"]["bindings"])
+    # return results.toxml(encoding="utf-8")
 
 
 # url_for('static', filename='fvx-html.xsl')
