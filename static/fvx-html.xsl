@@ -91,8 +91,8 @@
 	  <title>FOAF</title>
 	  <link rel="meta" type="application/rdf+xml" title="FOAF" href="{$URI}"/>
 	  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
-	  <link rel="stylesheet" type="text/css" href="foaf-vix.css?v={$VERSION}"/>
-	  <script type="text/javascript" src="foaf-vix.js?v={$VERSION}"></script>
+	  <link rel="stylesheet" type="text/css" href="static/foaf-vix.css?v={$VERSION}"/>
+	  <script type="text/javascript" src="static/foaf-vix.js?v={$VERSION}"></script>
 	  <xsl:if test="$google_analytics != ''">
 	    <script type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
 	    <script type="text/javascript">if (typeof _gat != 'undefined') {
@@ -666,7 +666,7 @@
   </span>
   <xsl:if test="position() != last()">
     <xsl:text>, </xsl:text>
-  </xsl:if> 
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="foaf:homepage |
@@ -978,7 +978,7 @@
   </xsl:choose>
   <xsl:if test="position() != last()">
     <xsl:text>, </xsl:text>
-  </xsl:if> 
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="foaf:knows/foaf:Person |
@@ -1044,7 +1044,7 @@
   </xsl:choose>
   <xsl:if test="position() != last()">
     <xsl:text>, </xsl:text>
-  </xsl:if> 
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="foaf:interest">
