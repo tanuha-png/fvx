@@ -45,6 +45,7 @@
     <thead class="table-active">
      <tr>
  <th scope="col">Ссылка </th>
+ <th scope="col">Название </th>
  <th scope="col">Широта</th>
  <th scope="col">Долгота</th>
      </tr>
@@ -53,8 +54,9 @@
 {% for p in probes %}
     <tr>
  <td contenteditable="true">{{p[0]}}</td>
- <td contenteditable="true">{{p[1]}}</td>
+ <td onclick="document.location='page/new.html'" contenteditable="true">{{p[1]}}</td>
  <td contenteditable="true">{{p[2]}}</td>
+ <td contenteditable="true">{{p[3]}}</td>
     </tr>
 {% endfor %}
     </tbody>

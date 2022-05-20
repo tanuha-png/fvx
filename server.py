@@ -1,7 +1,7 @@
 from flask import (
     Flask, request, url_for,
     send_from_directory, make_response, render_template)
-
+from rdflib import Graph
 from markupsafe import escape
 import requests as rq
 from lxml.html import fromstring
@@ -55,14 +55,17 @@ POL_SERVER_EP = "http://irnok.net:3030/sparql"
 
 GET_SAMPLES = """
 PREFIX wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-SELECT ?probe ?lat ?long WHERE {
+SELECT ?probe ?label ?lat ?long WHERE {
   ?probe a <http://dbpedia.org/page/Sample_(material)> .
+  ?probe rdfs:label ?label .
   ?probe wgs:lat ?lat .
   ?probe wgs:long ?long .
 }
 
 LIMIT 10"""
+
 
 LIST_HTML = """
  <head>
@@ -79,20 +82,23 @@ LIST_HTML = """
 
 @app.route('/samples')
 def sample_list():
-    sparql = SPARQLWrapper("http://irnok.net:3030/sparql")
-    # sparql.setReturnFormat(RDFXML)
-    sparql.setReturnFormat(JSON)
-    sparql.setQuery(GET_SAMPLES)
-    results = sparql.queryAndConvert()
-    # probes = [r['probe']['value'] for r in results["results"]["bindings"]]
+    #sparql = SPARQLWrapper("http://irnok.net:3030/sparql")
+    #sparql.setReturnFormat(JSON)
+    #sparql.setQuery(GET_SAMPLES)
+
+    #results = sparql.queryAndConvert()
+    KG = Graph()
+    KG.parse("database-from-python.ttl")
+    results = KG.query(GET_SAMPLES)
+    # for row in results:
     probes = [[r['probe']['value'],
+               r['label']['value'],
                r["lat"]["value"],
                r['long']['value']] for r in results["results"]["bindings"]]
     #lp = "\n<br/>".join(["<li>{} {} {}</li>".format(*p) for p in probes])
     return render_template("samples.html", probes=probes)
     # return dumps(results["results"]["bindings"])
     # return results.toxml(encoding="utf-8")
-
 
 # url_for('static', filename='fvx-html.xsl')
 # url_for('static', filename='fvx-json.xsl')
