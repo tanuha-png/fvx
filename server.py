@@ -1,6 +1,6 @@
 from flask import (
     Flask, request, url_for,
-    send_from_directory, make_response)
+    send_from_directory, make_response, render_template)
 
 from markupsafe import escape
 import requests as rq
@@ -53,10 +53,9 @@ def send_report(path):
 
 POL_SERVER_EP = "http://irnok.net:3030/sparql"
 
-GET_SAMPLES = """PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX dbp: <http://dbpedia.org/page/>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+GET_SAMPLES = """
 PREFIX wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+
 SELECT ?probe ?lat ?long WHERE {
   ?probe a <http://dbpedia.org/page/Sample_(material)> .
   ?probe wgs:lat ?lat .
@@ -89,8 +88,8 @@ def sample_list():
     probes = [[r['probe']['value'],
                r["lat"]["value"],
                r['long']['value']] for r in results["results"]["bindings"]]
-    lp = "\n<br/>".join(["<li>{} {} {}</li>".format(*p) for p in probes])
-    return LIST_HTML.format(lp)
+    #lp = "\n<br/>".join(["<li>{} {} {}</li>".format(*p) for p in probes])
+    return render_template("samples.html", probes=probes)
     # return dumps(results["results"]["bindings"])
     # return results.toxml(encoding="utf-8")
 
