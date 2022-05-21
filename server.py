@@ -1,3 +1,4 @@
+from pprint import pprint
 from flask import (
     Flask, request, url_for,
     send_from_directory, make_response, render_template)
@@ -58,7 +59,7 @@ PREFIX wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT ?probe ?label ?lat ?long WHERE {
-  ?probe a <http://dbpedia.org/page/Sample_(material)> .
+  ?probe a <http://dbpedia.org/page/SampleMaterial> .
   ?probe rdfs:label ?label .
   ?probe wgs:lat ?lat .
   ?probe wgs:long ?long .
@@ -79,23 +80,29 @@ LIST_HTML = """
 </html>
 """
 
+def getsamplesfromsite(site):
+    sparql = SPARQLWrapper(site)
+    sparql.setReturnFormat(JSON)
+    sparql.setQuery(GET_SAMPLES)
 
-@app.route('/samples')
-def sample_list():
-    #sparql = SPARQLWrapper("http://irnok.net:3030/sparql")
-    #sparql.setReturnFormat(JSON)
-    #sparql.setQuery(GET_SAMPLES)
-
-    #results = sparql.queryAndConvert()
-    KG = Graph()
-    KG.parse("database-from-python.ttl")
-    results = KG.query(GET_SAMPLES)
-    # for row in results:
+    results = sparql.queryAndConvert()
     probes = [[r['probe']['value'],
                r['label']['value'],
                r["lat"]["value"],
                r['long']['value']] for r in results["results"]["bindings"]]
-    #lp = "\n<br/>".join(["<li>{} {} {}</li>".format(*p) for p in probes])
+    return probes
+
+def getsamplesfromfile(filename):
+    KG = Graph()
+    KG.parse(filename)
+    results = KG.query(GET_SAMPLES)
+    return results
+
+@app.route('/samples')
+def sample_list():
+    # probes = getsamplesfromsite("http://irnok.net:3030/sparql")
+    probes = getsamplesfromfile("/home/dvort/nikitin-vkr/database-from-python.ttl")
+    pprint(list(probes))
     return render_template("samples.html", probes=probes)
     # return dumps(results["results"]["bindings"])
     # return results.toxml(encoding="utf-8")
