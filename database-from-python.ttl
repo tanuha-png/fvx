@@ -19,7 +19,7 @@ gp:unit a owl:AnnotationProperty .
     rdfs:label "Database of Pollutions on Olkhon Island"@en,
         "База данных загрязнений на острове Ольхон"@ru .
 
-<UGS-0211> a dbp:Sample_(material),
+<UGS-0211> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0211"@en ;
     <contains> <UGS-0211-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -60,7 +60,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.149529993534" ;
     wgs:long "107.406912976875" .
 
-<UGS-0212> a dbp:Sample_(material),
+<UGS-0212> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0212"@en ;
     <contains> <UGS-0212-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -101,7 +101,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1585080176591" ;
     wgs:long "107.407415974885" .
 
-<UGS-0214> a dbp:Sample_(material),
+<UGS-0214> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0214"@en ;
     <contains> <UGS-0214-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -142,7 +142,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.158809011802" ;
     wgs:long "107.392479004338" .
 
-<UGS-0215> a dbp:Sample_(material),
+<UGS-0215> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0215"@en ;
     <contains> <UGS-0215-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -183,7 +183,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1541699636727" ;
     wgs:long "107.399696996435" .
 
-<UGS-0216> a dbp:Sample_(material),
+<UGS-0216> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0216"@en ;
     <contains> <UGS-0216-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -224,7 +224,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1498309876769" ;
     wgs:long "107.391980029642" .
 
-<UGS-0217> a dbp:Sample_(material),
+<UGS-0217> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0217"@en ;
     <contains> <UGS-0217-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -265,7 +265,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1544700358062" ;
     wgs:long "107.384762037545" .
 
-<UGS-0218> a dbp:Sample_(material),
+<UGS-0218> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0218"@en ;
     <contains> <UGS-0218-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -306,7 +306,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1634479761123" ;
     wgs:long "107.385260006412" .
 
-<UGS-0219> a dbp:Sample_(material),
+<UGS-0219> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0219"@en ;
     <contains> <UGS-0219-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -347,7 +347,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1680860184133" ;
     wgs:long "107.378037991002" .
 
-<UGS-0220> a dbp:Sample_(material),
+<UGS-0220> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0220"@en ;
     <contains> <UGS-0220-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -388,7 +388,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1591079942882" ;
     wgs:long "107.377542033791" .
 
-<UGS-0221> a dbp:Sample_(material),
+<UGS-0221> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0221"@en ;
     <contains> <UGS-0221-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -429,7 +429,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1408539693802" ;
     wgs:long "107.391480971127" .
 
-<UGS-0222> a dbp:Sample_(material),
+<UGS-0222> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0222"@en ;
     <contains> <UGS-0222-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -470,7 +470,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1451920233666" ;
     wgs:long "107.399196010082" .
 
-<UGS-0224> a dbp:Sample_(material),
+<UGS-0224> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0224"@en ;
     <contains> <UGS-0224-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -511,7 +511,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1538679637014" ;
     wgs:long "107.414632039144" .
 
-<UGS-0225> a dbp:Sample_(material),
+<UGS-0225> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0225"@en ;
     <contains> <UGS-0225-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -552,7 +552,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1448900233954" ;
     wgs:long "107.414128035306" .
 
-<UGS-0227> a dbp:Sample_(material),
+<UGS-0227> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0227"@en ;
     <contains> <UGS-0227-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -593,7 +593,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1359130050987" ;
     wgs:long "107.413625037297" .
 
-<UGS-0228> a dbp:Sample_(material),
+<UGS-0228> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0228"@en ;
     <contains> <UGS-0228-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -634,7 +634,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1315750349313" ;
     wgs:long "107.405908992514" .
 
-<UGS-0229> a dbp:Sample_(material),
+<UGS-0229> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0229"@en ;
     <contains> <UGS-0229-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -675,7 +675,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1225970108062" ;
     wgs:long "107.405408006161" .
 
-<UGS-0230> a dbp:Sample_(material),
+<UGS-0230> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0230"@en ;
     <contains> <UGS-0230-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -716,7 +716,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1272369809448" ;
     wgs:long "107.398195965215" .
 
-<UGS-0231> a dbp:Sample_(material),
+<UGS-0231> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0231"@en ;
     <contains> <UGS-0231-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -757,7 +757,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1318760290741" ;
     wgs:long "107.390981996431" .
 
-<UGS-0233> a dbp:Sample_(material),
+<UGS-0233> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0233"@en ;
     <contains> <UGS-0233-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -798,7 +798,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1405529752373" ;
     wgs:long "107.406410984694" .
 
-<UGS-0234> a dbp:Sample_(material),
+<UGS-0234> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0234"@en ;
     <contains> <UGS-0234-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -839,7 +839,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1182590406388" ;
     wgs:long "107.397695984691" .
 
-<UGS-0235> a dbp:Sample_(material),
+<UGS-0235> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0235"@en ;
     <contains> <UGS-0235-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -880,7 +880,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.122898004949" ;
     wgs:long "107.390484027564" .
 
-<UGS-0237> a dbp:Sample_(material),
+<UGS-0237> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0237"@en ;
     <contains> <UGS-0237-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -921,7 +921,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1231969874352" ;
     wgs:long "107.37555895932" .
 
-<UGS-0238> a dbp:Sample_(material),
+<UGS-0238> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0238"@en ;
     <contains> <UGS-0238-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -962,7 +962,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.127535963431" ;
     wgs:long "107.383269974961" .
 
-<UGS-0239> a dbp:Sample_(material),
+<UGS-0239> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0239"@en ;
     <contains> <UGS-0239-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -1003,7 +1003,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1637460365891" ;
     wgs:long "107.370321024209" .
 
-<UGS-0240> a dbp:Sample_(material),
+<UGS-0240> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0240"@en ;
     <contains> <UGS-0240-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -1044,7 +1044,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1727239768952" ;
     wgs:long "107.370815975591" .
 
-<UGS-0241> a dbp:Sample_(material),
+<UGS-0241> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0241"@en ;
     <contains> <UGS-0241-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -1085,7 +1085,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1773620191961" ;
     wgs:long "107.363592032343" .
 
-<UGS-0242> a dbp:Sample_(material),
+<UGS-0242> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0242"@en ;
     <contains> <UGS-0242-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -1126,7 +1126,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1819989718496" ;
     wgs:long "107.356365993618" .
 
-<UGS-0243> a dbp:Sample_(material),
+<UGS-0243> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0243"@en ;
     <contains> <UGS-0243-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -1167,7 +1167,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1866350024938" ;
     wgs:long "107.349139032885" .
 
-<UGS-0244> a dbp:Sample_(material),
+<UGS-0244> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0244"@en ;
     <contains> <UGS-0244-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -1208,7 +1208,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1556519679725" ;
     wgs:long "107.325018011033" .
 
-<UGS-0246> a dbp:Sample_(material),
+<UGS-0246> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0246"@en ;
     <contains> <UGS-0246-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -1249,7 +1249,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1602869927883" ;
     wgs:long "107.317791972309" .
 
-<UGS-0247> a dbp:Sample_(material),
+<UGS-0247> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0247"@en ;
     <contains> <UGS-0247-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -1290,7 +1290,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1692650169134" ;
     wgs:long "107.318276027217" .
 
-<UGS-0249> a dbp:Sample_(material),
+<UGS-0249> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0249"@en ;
     <contains> <UGS-0249-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -1331,7 +1331,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.177951015532" ;
     wgs:long "107.333704009652" .
 
-<UGS-0250> a dbp:Sample_(material),
+<UGS-0250> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0250"@en ;
     <contains> <UGS-0250-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -1372,7 +1372,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1504280306398" ;
     wgs:long "107.3621120397" .
 
-<UGS-0251> a dbp:Sample_(material),
+<UGS-0251> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0251"@en ;
     <contains> <UGS-0251-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -1413,7 +1413,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1550649832934" ;
     wgs:long "107.354890024289" .
 
-<UGS-0252> a dbp:Sample_(material),
+<UGS-0252> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0252"@en ;
     <contains> <UGS-0252-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -1454,7 +1454,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1501299701631" ;
     wgs:long "107.377045992761" .
 
-<UGS-0255> a dbp:Sample_(material),
+<UGS-0255> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0255"@en ;
     <contains> <UGS-0255-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -1495,7 +1495,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.168383995071" ;
     wgs:long "107.36309800297" .
 
-<UGS-0256> a dbp:Sample_(material),
+<UGS-0256> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0256"@en ;
     <contains> <UGS-0256-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -1536,7 +1536,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1730210315436" ;
     wgs:long "107.355873975902" .
 
-<UGS-0258> a dbp:Sample_(material),
+<UGS-0258> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0258"@en ;
     <contains> <UGS-0258-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -1577,7 +1577,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1822940148413" ;
     wgs:long "107.341420976445" .
 
-<UGS-0260> a dbp:Sample_(material),
+<UGS-0260> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0260"@en ;
     <contains> <UGS-0260-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -1618,7 +1618,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1510170269757" ;
     wgs:long "107.33224296011" .
 
-<UGS-0262> a dbp:Sample_(material),
+<UGS-0262> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0262"@en ;
     <contains> <UGS-0262-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -1659,7 +1659,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1733149848878" ;
     wgs:long "107.340931976214" .
 
-<UGS-0266> a dbp:Sample_(material),
+<UGS-0266> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0266"@en ;
     <contains> <UGS-0266-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -1700,7 +1700,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1466740276664" ;
     wgs:long "107.324533034116" .
 
-<UGS-0267> a dbp:Sample_(material),
+<UGS-0267> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0267"@en ;
     <contains> <UGS-0267-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -1741,7 +1741,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1463809963315" ;
     wgs:long "107.339465981349" .
 
-<UGS-0268> a dbp:Sample_(material),
+<UGS-0268> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0268"@en ;
     <contains> <UGS-0268-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -1782,7 +1782,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1553590204566" ;
     wgs:long "107.339953975752" .
 
-<UGS-0269> a dbp:Sample_(material),
+<UGS-0269> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0269"@en ;
     <contains> <UGS-0269-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -1823,7 +1823,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1597010139375" ;
     wgs:long "107.34766700305" .
 
-<UGS-0270> a dbp:Sample_(material),
+<UGS-0270> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGS-0270"@en ;
     <contains> <UGS-0270-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -1864,7 +1864,7 @@ gp:unit a owl:AnnotationProperty .
     wgs:lat "53.1686790380626" ;
     wgs:long "107.348158014938" .
 
-<UGW-0264> a dbp:Sample_(material),
+<UGW-0264> a dbp:SampleMaterial,
         owl:NamedIndividual ;
     rdfs:label "UGW-0264"@en ;
     <contains> <UGW-0264-https://dbpedia.org/page/Aluminium_oxide-amount>,
@@ -8355,5 +8355,4 @@ dbp:Database a owl:Class .
     gp:pollutedBy <http://dbpedia.org/page/https://dbpedia.org/page/Zirconium> ;
     gp:unit dbp:Parts-per_notation .
 
-dbp:Sample_(material) a owl:Class .
-
+dbp:SampleMaterial a owl:Class .

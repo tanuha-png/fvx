@@ -2,11 +2,10 @@ from flask import (
     Flask, request, url_for,
     send_from_directory, make_response, render_template)
 from rdflib import Graph
-from markupsafe import escape
 import requests as rq
-from lxml.html import fromstring
+from pprint import pprint
 from SPARQLWrapper import SPARQLWrapper, JSON, XML, RDFXML
-from json import dumps
+
 
 
 app = Flask(__name__)
@@ -58,7 +57,7 @@ PREFIX wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT ?probe ?label ?lat ?long WHERE {
-  ?probe a <http://dbpedia.org/page/Sample_(material)> .
+  ?probe a <http://dbpedia.org/page/SampleMaterial> .
   ?probe rdfs:label ?label .
   ?probe wgs:lat ?lat .
   ?probe wgs:long ?long .
@@ -80,25 +79,77 @@ LIST_HTML = """
 """
 
 
-@app.route('/samples')
-def sample_list():
-    #sparql = SPARQLWrapper("http://irnok.net:3030/sparql")
-    #sparql.setReturnFormat(JSON)
-    #sparql.setQuery(GET_SAMPLES)
+def getsamplesfromsite(site):
+    sparql = SPARQLWrapper(site)
+    sparql.setReturnFormat(JSON)
+    sparql.setQuery(GET_SAMPLES)
 
-    #results = sparql.queryAndConvert()
-    KG = Graph()
-    KG.parse("database-from-python.ttl")
-    results = KG.query(GET_SAMPLES)
-    # for row in results:
+    results = sparql.queryAndConvert()
     probes = [[r['probe']['value'],
                r['label']['value'],
                r["lat"]["value"],
                r['long']['value']] for r in results["results"]["bindings"]]
-    #lp = "\n<br/>".join(["<li>{} {} {}</li>".format(*p) for p in probes])
+    return probes
+
+
+KG_FILENAME="fvx/database-from-python.ttl"
+
+KG = Graph()
+KG.parse(KG_FILENAME)
+
+
+def getsamplesfromfile(filename):
+    results = KG.query(GET_SAMPLES)
+    return results
+
+def getfromlocal(query, initBindings=None):
+    if initBindings is None:
+        return KG.query(query)
+    else:
+        return KG.query(query, initBindings=initBindings)
+
+@app.route('/samples')
+def sample_list():
+    #probes = getsamplesfromsite("http://irnok.net:3030/sparql")
+    probes = getsamplesfromfile()
+    pprint(list(probes))
     return render_template("samples.html", probes=probes)
-    # return dumps(results["results"]["bindings"])
-    # return results.toxml(encoding="utf-8")
+
+
+SELECT_AMOUNTS = """
+PREFIX wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX gp: <http://irnok.net/ontology/geopollution#>
+PREFIX base: <http://irnok.net/ontology/geopollution/>
+
+  SELECT ?element ?amount ?unit ?uName WHERE {
+  ?probe a <http://dbpedia.org/page/SampleMaterial> .
+  base:UGS-0212 base:contains  ?elAmount .
+  ?elAmount gp:amount ?amount .
+  ?elAmount gp:pollutedBy ?element .
+  ?elAmount gp:unit ?unit .
+
+  SERVICE <https://dbpedia.org/sparql> {
+      ?element rdfs:label ?elName .
+      ?unit rdfs:label ?uName .
+      FILTER (
+        langMatches(lang(?elName), 'ru')
+        &&
+        langMatches(lang(?uName), 'ru')
+      )
+    }
+}
+ LIMIT 10
+"""
+
+@app.route('/probe')
+def sampe_edit():
+    uri = request.args.get('uri')
+    q = SELECT_AMOUNTS.replace("URI", uri)
+    print(q)
+    data = getfromlocal(q)
+    print(list(data))
+    return render_template("probe.html")
 
 # url_for('static', filename='fvx-html.xsl')
 # url_for('static', filename='fvx-json.xsl')
