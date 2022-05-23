@@ -1,3 +1,4 @@
+from pprint import pprint
 from flask import (
     Flask, request, url_for,
     send_from_directory, make_response, render_template)
@@ -78,7 +79,6 @@ LIST_HTML = """
 </html>
 """
 
-
 def getsamplesfromsite(site):
     sparql = SPARQLWrapper(site)
     sparql.setReturnFormat(JSON)
@@ -90,7 +90,6 @@ def getsamplesfromsite(site):
                r["lat"]["value"],
                r['long']['value']] for r in results["results"]["bindings"]]
     return probes
-
 
 KG_FILENAME="fvx/database-from-python.ttl"
 
