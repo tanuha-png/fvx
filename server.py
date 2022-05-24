@@ -92,13 +92,8 @@ def getsamplesfromsite(site):
     ] for r in results["results"]["bindings"]]
     return probes
 
-#<<<<<<< HEAD
-
-# KG_FILENAME = KG_FILE_DIR+"database-from-python.ttl"
-#KG_FILENAME = KG_FILE_DIR+"database-from-python.rdf"
-#=======
-KG_FILENAME="fvx/database-from-python.ttl"
-#>>>>>>> ba6e230b1dcbed3b1134ed96b50e88929216ea70
+# KG_FILENAME = KG_FILE_DIR+"database-from-python.rdf"
+KG_FILENAME="..\\vkr\\database-from-python.rdf"
 
 KG = Graph()
 print("INFO: Loading database from {}".format(KG_FILENAME))
