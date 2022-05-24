@@ -98,7 +98,7 @@ KG_FILENAME="..\\vkr\\database-from-python.rdf"
 KG = Graph()
 print("INFO: Loading database from {}".format(KG_FILENAME))
 KG.parse(KG_FILENAME)
-
+# test
 
 def getsamplesfromfile():
     results = KG.query(GET_SAMPLES)
