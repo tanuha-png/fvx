@@ -1,3 +1,6 @@
 *~
 *.xml
 .htaccess
+/.python-version
+/tmp/
+/__pycache__/
