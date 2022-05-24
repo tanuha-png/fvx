@@ -65,7 +65,7 @@ SELECT ?probe ?label ?lat ?long WHERE {
   ?probe wgs:lat ?lat .
   ?probe wgs:long ?long .
 }
-LIMIT 10"""
+LIMIT 200"""
 
 LIST_HTML = """
  <head>
@@ -145,7 +145,7 @@ def sampe_edit():
     print(q)
     data = getfromlocal(q)
     print(list(data))
-    return render_template("probe.html")
+    return render_template("probe.html", data=data)
 
 
 # url_for('static', filename='fvx-html.xsl')
