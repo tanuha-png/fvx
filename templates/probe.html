@@ -21,7 +21,10 @@
 
 <body>
 
-<h1>Данные о загрязнении </h1>
+<script>
+let d = window.location.href.split("/").pop();
+document.body.innerHTML = "<h1>Данные о загрязнении " + d + "</h1>"
+</script>
 
 <div>
     <table class="table table-bordered table-hover">

@@ -127,12 +127,12 @@ SELECT_AMOUNTS = PREFIXES + """
   ?elAmount gp:amount ?amount .
   ?elAmount gp:pollutedBy ?element .
   ?elAmount gp:unit ?unit .
-  # SERVICE <https://dbpedia.org/sparql> {
-  #   ?element rdfs:label ?elName .
-  #      FILTER (
-  #        langMatches(lang(?elName), 'ru')
-  #      )
-  #    }
+#  SERVICE <https://dbpedia.org/sparql> {
+#     ?element rdfs:label ?elName .
+#        FILTER (
+#          langMatches(lang(?elName), 'en')
+#        )
+#      }
   }
   LIMIT 200
 """
