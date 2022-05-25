@@ -38,9 +38,9 @@ document.body.innerHTML = "<h1>Данные о загрязнении " + d + "<
     <tbody>
 {% for d in data %}
     <tr>
- <td contenteditable="true">{{d[0]}}</td>
+ <td contenteditable="true" data-uri="{{d[0]}}">{{label(d[0])}}</td>
  <td contenteditable="true">{{d[1]}}</td>
- <td contenteditable="true">{{d[2]}}</td>
+ <td contenteditable="true">{{label(d[2])}}</td>
     </tr>
 {% endfor %}
     </tbody>
