@@ -11,6 +11,7 @@ app = Flask(__name__)
 # app.route('/<path:subpath>')
 
 BASE_URL = "http://localhost:5000/static/"
+KG_FILE_DIR = "../vkr/"
 KG_FILE_DIR = "../GeoGisKG/"
 
 HTML_DEF = """<html>
@@ -59,15 +60,13 @@ PREFIX base: <http://irnok.net/database/geopollution#>
 """
 
 GET_SAMPLES = PREFIXES + """
-
 SELECT ?probe ?label ?lat ?long WHERE {
   ?probe a <http://dbpedia.org/resource/Sample_(material)> .
   ?probe rdfs:label ?label .
   ?probe wgs:lat ?lat .
   ?probe wgs:long ?long .
 }
-
-LIMIT 10"""
+LIMIT 200"""
 
 LIST_HTML = """
  <head>
@@ -102,7 +101,6 @@ KG = Graph()
 print("INFO: Loading database from {}".format(KG_FILENAME))
 KG.parse(KG_FILENAME)
 
-
 def getsamplesfromfile():
     results = KG.query(GET_SAMPLES)
     return results
@@ -124,20 +122,18 @@ def sample_list():
 
 
 SELECT_AMOUNTS = PREFIXES + """
-
   SELECT ?element ?amount ?unit WHERE {
   <@URI@> a <http://dbpedia.org/resource/Sample_(material)> .
   <@URI@> gp:contains  ?elAmount .
   ?elAmount gp:amount ?amount .
   ?elAmount gp:pollutedBy ?element .
   ?elAmount gp:unit ?unit .
-
-  # SERVICE <https://dbpedia.org/sparql> {
-  #   ?element rdfs:label ?elName .
-  #      FILTER (
-  #        langMatches(lang(?elName), 'ru')
-  #      )
-  #    }
+#  SERVICE <https://dbpedia.org/sparql> {
+#     ?element rdfs:label ?elName .
+#        FILTER (
+#          langMatches(lang(?elName), 'en')
+#        )
+#      }
   }
   LIMIT 200
 """
@@ -150,7 +146,7 @@ def sampe_edit():
     print(q)
     data = getfromlocal(q)
     print(list(data))
-    return render_template("probe.html")
+    return render_template("probe.html", data=data)
 
 
 # url_for('static', filename='fvx-html.xsl')
