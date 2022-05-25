@@ -5,13 +5,18 @@ from rdflib import Graph
 import requests as rq
 from pprint import pprint
 from SPARQLWrapper import SPARQLWrapper, JSON, XML, RDFXML
+import os
 
 app = Flask(__name__)
 
 # app.route('/<path:subpath>')
 
 BASE_URL = "http://localhost:5000/static/"
+
+#if os.system == "nt":
 KG_FILE_DIR = "../vkr/"
+#else:
+  #  KG_FILE_DIR = "../GeoGisKG/"
 
 HTML_DEF = """<html>
  <head>
@@ -92,13 +97,33 @@ def getsamplesfromsite(site):
     ] for r in results["results"]["bindings"]]
     return probes
 
-# KG_FILENAME = KG_FILE_DIR+"database-from-python.rdf"
-KG_FILENAME="..\\vkr\\database-from-python.rdf"
+
+# KG_FILENAME = KG_FILE_DIR+"database-from-python.ttl"
+KG_FILENAME = KG_FILE_DIR+"database-from-python.rdf"
+NAMES_FILENAME = KG_FILE_DIR+"names.rdf"
 
 KG = Graph()
 print("INFO: Loading database from {}".format(KG_FILENAME))
 KG.parse(KG_FILENAME)
-# test
+NG = Graph()
+NG.parse(NAMES_FILENAME)
+
+NAMES = {}
+
+SELECT_NAMES = PREFIXES + """
+SELECT ?ent ?label WHERE {
+    ?ent rdfs:label ?label .
+}
+"""
+
+def load_names():
+    r = NG.query(SELECT_NAMES)
+    for (e, label) in r:
+        NAMES[e] = label
+
+load_names()
+
+
 
 def getsamplesfromfile():
     results = KG.query(GET_SAMPLES)
@@ -107,9 +132,15 @@ def getsamplesfromfile():
 
 def getfromlocal(query, initBindings=None):
     if initBindings is None:
-        return KG.query(query)
+        data = KG.query(query)
     else:
-        return KG.query(query, initBindings=initBindings)
+        data =  KG.query(query, initBindings=initBindings)
+    # data = [
+    #     [ label(el) for el in row ]
+    #     for row in data
+    # ]
+    return data
+
 
 
 @app.route('/samples')
@@ -127,15 +158,15 @@ SELECT_AMOUNTS = PREFIXES + """
   ?elAmount gp:amount ?amount .
   ?elAmount gp:pollutedBy ?element .
   ?elAmount gp:unit ?unit .
-#  SERVICE <https://dbpedia.org/sparql> {
-#     ?element rdfs:label ?elName .
-#        FILTER (
-#          langMatches(lang(?elName), 'en')
-#        )
-#      }
-  }
+}
   LIMIT 200
 """
+
+def label(en):
+    if en in NAMES:
+        return NAMES[en]
+    else:
+        return en
 
 
 @app.route('/probe')
@@ -144,8 +175,7 @@ def sampe_edit():
     q = SELECT_AMOUNTS.replace("@URI@", uri)
     print(q)
     data = getfromlocal(q)
-    print(list(data))
-    return render_template("probe.html", data=data)
+    return render_template("probe.html", data=data, label=label)
 
 
 # url_for('static', filename='fvx-html.xsl')
