@@ -70,20 +70,35 @@ SELECT ?probe ?label ?lat ?long WHERE {
   ?probe wgs:lat ?lat .
   ?probe wgs:long ?long .
 }
+ORDER BY ?label 
 LIMIT 200"""
 
-LIST_HTML = """
- <head>
-  <meta charset="utf-8" />
- </head>
- <body>
-  <ul>
-  {}
-  </ul>
- </body>
-</html>
+
+GET_WP_AP = PREFIXES + """
+SELECT ?text WHERE {
+    @WHAT@ a <http://dbpedia.org/resource/Sample_(material)> .
+    @WHAT@ wgs:@WHAT@ @TEXT@
+}
+LIMIT 1
 """
 
+DEL_WP_AP = PREFIXES + """
+DELETE {
+    @WHAT@ wgs:@WHAT@ @TEXT@ .
+} WHERE {
+    @WHAT@ a <http://dbpedia.org/resource/Sample_(material)> .
+    @WHAT@ wgs:@WHAT@ @TEXT@ .
+}
+"""
+
+INS_WP_AP = PREFIXES + """
+INSERT {
+    @WHAT@ wgs:@WHAT@ @TEXT@ .
+} WHERE {
+    @WHAT@ a <http://dbpedia.org/resource/Sample_(material)> .
+    # @WHAT@ wgs:@WHAT@ @TEXT@ .
+}
+"""
 
 def getsamplesfromsite(site):
     sparql = SPARQLWrapper(site)
@@ -97,6 +112,15 @@ def getsamplesfromsite(site):
     ] for r in results["results"]["bindings"]]
     return probes
 
+QUERIES = [
+        (("lat", "long"), [GET_WP_AP,DEL_WP_AP,INS_WP_AP]),
+    ]
+
+def gettemplate(what):
+    for t, qs in QUERIES:
+        if what in t:
+            templ = qs
+    return templ
 
 # KG_FILENAME = KG_FILE_DIR+"database-from-python.ttl"
 KG_FILENAME = KG_FILE_DIR+"database-from-python.rdf"
