@@ -13,10 +13,17 @@ app = Flask(__name__)
 
 BASE_URL = "http://localhost:5000/static/"
 
+<<<<<<< HEAD
 #if os.system == "nt":
 KG_FILE_DIR = "../vkr/"
 #else:
   #  KG_FILE_DIR = "../GeoGisKG/"
+=======
+if os.system == "nt":
+    KG_FILE_DIR = "../vkr/"
+else:
+    KG_FILE_DIR = "../GeoGisKG/"
+>>>>>>> eug/master
 
 HTML_DEF = """<html>
  <head>
