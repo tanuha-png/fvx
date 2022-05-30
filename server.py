@@ -15,7 +15,7 @@ BASE_URL = "http://localhost:5000/static/"
 
 
 if os.system == "nt":
-    KG_FILE_DIR = r"..\vkr\"
+    KG_FILE_DIR = "..\\vkr\\"
 else:
     KG_FILE_DIR = "../GeoGisKG/"
 

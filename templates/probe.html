@@ -24,13 +24,14 @@
 
     <script type="text/javascript">
     $(document).ready(function(){
-        $("#editor").click(function() {
-            $(".contenteditable").each(function () {
+        $("#editor").on("click",function() {
+          alert("OK")
+            $(".edited").each(function () {
                 $(this).attr('contenteditable', "true");
             });
         });
         $("#save").click(function() {
-            $(".contenteditable").each(function () {
+            $(".edited").each(function () {
                 $(this).attr('contenteditable', "false");
             });
         });
@@ -63,8 +64,8 @@ document.body.innerHTML = "<h1>Данные о загрязнении " + d + "<
     <tbody>
 {% for d in data %}
     <tr>
- <td contenteditable="false" data-uri="{{d[0]}}">{{label(d[0])}}</td>
- <td contenteditable="false">{{d[1]}}</td>
+ <td class="edited" contenteditable="false" data-uri="{{d[0]}}">{{label(d[0])}}</td>
+ <td class="edited" contenteditable="false">{{d[1]}}</td>
  <td>{{label(d[2])}}</td>
     </tr>
 {% endfor %}
