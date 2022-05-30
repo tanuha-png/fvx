@@ -1,11 +1,12 @@
 from pprint import pprint
 from flask import (Flask, request, url_for, send_from_directory, make_response,
-                   render_template)
-from rdflib import Graph
+                   render_template, jsonify)
+from rdflib import Graph, URIRef
 import requests as rq
 from pprint import pprint
 from SPARQLWrapper import SPARQLWrapper, JSON, XML, RDFXML
-import os
+import os, io, json
+from pyRdfa import pyRdfa
 
 app = Flask(__name__)
 
@@ -146,6 +147,7 @@ def load_names():
     r = NG.query(SELECT_NAMES)
     for (e, label) in r:
         NAMES[e] = label
+        NAMES[str(e)] = label
 
 load_names()
 
@@ -154,19 +156,6 @@ load_names()
 def getsamplesfromfile():
     results = KG.query(GET_SAMPLES)
     return results
-
-
-def getfromlocal(query, initBindings=None):
-    if initBindings is None:
-        data = KG.query(query)
-    else:
-        data =  KG.query(query, initBindings=initBindings)
-    # data = [
-    #     [ label(el) for el in row ]
-    #     for row in data
-    # ]
-    return data
-
 
 
 @app.route('/samples')
@@ -178,9 +167,11 @@ def sample_list():
 
 
 SELECT_AMOUNTS = PREFIXES + """
-  SELECT ?element ?amount ?unit WHERE {
-  <@URI@> a <http://dbpedia.org/resource/Sample_(material)> .
-  <@URI@> gp:contains  ?elAmount .
+SELECT ?elAmount ?element ?amount ?unit
+WHERE
+{
+  ?probe a <http://dbpedia.org/resource/Sample_(material)> .
+  ?probe gp:contains  ?elAmount .
   ?elAmount gp:amount ?amount .
   ?elAmount gp:pollutedBy ?element .
   ?elAmount gp:unit ?unit .
@@ -198,11 +189,45 @@ def label(en):
 @app.route('/probe')
 def sampe_edit():
     uri = request.args.get('uri')
-    q = SELECT_AMOUNTS.replace("@URI@", uri)
-    print(q)
-    data = getfromlocal(q)
-    return render_template("probe.html", data=data, label=label)
+    # q = SELECT_AMOUNTS.replace("@URI@", uri)
+    #print(q)
+    # data = getfromlocal(SELECT_AMOUNTS,
+    #                     initBindings={
+    #                         "probe":uri
+    #                     })
+    uri = URIRef(uri)
+    print("About:", uri)
+    r = KG.query(SELECT_AMOUNTS,
+             initBindings={
+                 "probe":uri
+             })
 
+    ss = io.BytesIO()
+    r.serialize(destination=ss,
+                format='json')
+
+    ss.seek(0,0)
+    js = json.load(ss)
+    data = js["results"]["bindings"]
+    # pprint(data)
+
+    return render_template("probe.html",
+                           data=data,
+                           label=label,
+                           about=str(uri))
+
+@app.route('/api/v1.0/save', methods=['POST'])
+def save():
+    html = request.get_data(as_text=True)
+    print(html)
+    o=open("html.html","w")
+    o.write(html)
+    o.close()
+    ss = io.StringIO(html)
+    g = pyRdfa().graph_from_source(ss,rdfOutput=True)
+    g.serialize(destination="fromhtml.ttl",format="turtle", encoding="utf-8")
+    answer = {"result":"OK"}
+    return jsonify(answer)
 
 # url_for('static', filename='fvx-html.xsl')
 # url_for('static', filename='fvx-json.xsl')
