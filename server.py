@@ -6,20 +6,22 @@ import requests as rq
 from pprint import pprint
 from SPARQLWrapper import SPARQLWrapper, JSON, XML, RDFXML
 import os, io, json
-from pyRdfa import pyRdfa
+import requests
+from html import escape
+
+# from pyRdfa import pyRdfa
 
 app = Flask(__name__)
 
 # app.route('/<path:subpath>')
 
 BASE_URL = "http://localhost:5000/static/"
-
+DISTILLER_URL = "http://rdf.greggkellogg.net/distiller"
 
 if os.system == "nt":
     KG_FILE_DIR = "..\\vkr\\"
 else:
     KG_FILE_DIR = "../GeoGisKG/"
-
 
 HTML_DEF = """<html>
  <head>
@@ -76,7 +78,6 @@ SELECT ?probe ?label ?lat ?long WHERE {
 ORDER BY ?label
 LIMIT 200"""
 
-
 GET_WP_AP = PREFIXES + """
 SELECT ?text WHERE {
     @WHAT@ a <http://dbpedia.org/resource/Sample_(material)> .
@@ -103,6 +104,7 @@ INSERT {
 }
 """
 
+
 def getsamplesfromsite(site):
     sparql = SPARQLWrapper(site)
     sparql.setReturnFormat(JSON)
@@ -115,9 +117,11 @@ def getsamplesfromsite(site):
     ] for r in results["results"]["bindings"]]
     return probes
 
+
 QUERIES = [
-        (("lat", "long"), [GET_WP_AP,DEL_WP_AP,INS_WP_AP]),
-    ]
+    (("lat", "long"), [GET_WP_AP, DEL_WP_AP, INS_WP_AP]),
+]
+
 
 def gettemplate(what):
     for t, qs in QUERIES:
@@ -125,14 +129,29 @@ def gettemplate(what):
             templ = qs
     return templ
 
+
 # KG_FILENAME = KG_FILE_DIR+"database-from-python.ttl"
-KG_FILENAME = KG_FILE_DIR+"database-from-python.rdf"
-NAMES_FILENAME = KG_FILE_DIR+"names.rdf"
+KG_FILENAME = KG_FILE_DIR + "database-from-python.rdf"
+NAMES_FILENAME = KG_FILE_DIR + "names.rdf"
+
+
+def binds(g):
+    g.bind("owl", URIRef("http://www.w3.org/2002/07/owl#"))
+    g.bind("rdf", URIRef("http://www.w3.org/1999/02/22-rdf-syntax-ns#"))
+    g.bind("gp", URIRef("http://irnok.net/ontology/geopollution#"))
+    g.bind("gpdb", URIRef("http://irnok.net/ontology/database/"))
+    g.bind("dbr", URIRef("http://dbpedia.org/resource/"))
+    g.bind("wgs", URIRef("http://www.w3.org/2003/01/geo/wgs84_pos#"))
+    g.bind("rdfs", URIRef("http://www.w3.org/2000/01/rdf-schema#"))
+
 
 KG = Graph()
+binds(KG)
 print("INFO: Loading database from {}".format(KG_FILENAME))
 KG.parse(KG_FILENAME)
+
 NG = Graph()
+binds(NG)
 NG.parse(NAMES_FILENAME)
 
 NAMES = {}
@@ -143,14 +162,15 @@ SELECT ?ent ?label WHERE {
 }
 """
 
+
 def load_names():
     r = NG.query(SELECT_NAMES)
     for (e, label) in r:
         NAMES[e] = label
         NAMES[str(e)] = label
 
-load_names()
 
+load_names()
 
 
 def getsamplesfromfile():
@@ -179,6 +199,7 @@ WHERE
   LIMIT 200
 """
 
+
 def label(en):
     if en in NAMES:
         return NAMES[en]
@@ -197,16 +218,12 @@ def sampe_edit():
     #                     })
     uri = URIRef(uri)
     print("About:", uri)
-    r = KG.query(SELECT_AMOUNTS,
-             initBindings={
-                 "probe":uri
-             })
+    r = KG.query(SELECT_AMOUNTS, initBindings={"probe": uri})
 
     ss = io.BytesIO()
-    r.serialize(destination=ss,
-                format='json')
+    r.serialize(destination=ss, format='json')
 
-    ss.seek(0,0)
+    ss.seek(0, 0)
     js = json.load(ss)
     data = js["results"]["bindings"]
     # pprint(data)
@@ -216,18 +233,33 @@ def sampe_edit():
                            label=label,
                            about=str(uri))
 
+
 @app.route('/api/v1.0/save', methods=['POST'])
 def save():
     html = request.get_data(as_text=True)
-    print(html)
-    o=open("html.html","w")
+    # print(html)
+    o = open("html.html", "w")
     o.write(html)
     o.close()
-    ss = io.StringIO(html)
-    g = pyRdfa().graph_from_source(ss,rdfOutput=True)
-    g.serialize(destination="fromhtml.ttl",format="turtle", encoding="utf-8")
-    answer = {"result":"OK"}
+    print("await distiller")
+    rq = requests.post(DISTILLER_URL,
+                       json={
+                           "command": "serialize",
+                           "input": html
+                       })
+    js = rq.json()
+
+    ss = io.StringIO(js["serialized"])
+    g = Graph()
+    binds(g)
+    g.parse(ss)
+    g.serialize(destination="_.ttl", encoding="utf8", format="turtle")
+    # g = pyRdfa().graph_from_source(ss,rdfOutput=True)
+    # g.serialize(destination="fromhtml.ttl",format="turtle", encoding="utf-8")
+    msgs = js["messages"]
+    answer = {"result": "OK", "messages": msgs}
     return jsonify(answer)
+
 
 # url_for('static', filename='fvx-html.xsl')
 # url_for('static', filename='fvx-json.xsl')
