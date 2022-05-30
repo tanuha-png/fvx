@@ -14,10 +14,10 @@ app = Flask(__name__)
 BASE_URL = "http://localhost:5000/static/"
 
 
-if os.system == "nt":
-    KG_FILE_DIR = "..\\vkr\\"
-else:
-    KG_FILE_DIR = "../GeoGisKG/"
+#if os.system == "nt":
+KG_FILE_DIR = "..\\vkr\\"
+#else:
+ #   KG_FILE_DIR = "../GeoGisKG/"
 
 
 HTML_DEF = """<html>

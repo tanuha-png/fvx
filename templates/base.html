@@ -24,12 +24,12 @@
     <script type="text/javascript">
     $(document).ready(function(){
         $("#editor").click(function() {
-            $(".contenteditable").each(function () {
+            $(".edited").each(function () {
                 $(this).attr('contenteditable', "true");
             });
         });
         $("#save").click(function() {
-            $(".contenteditable").each(function () {
+            $(".edited").each(function () {
                 $(this).attr('contenteditable', "false");
             });
         });
