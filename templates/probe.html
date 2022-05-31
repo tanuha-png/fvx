@@ -90,13 +90,14 @@ document.body.innerHTML = "<h1>Данные о загрязнении " + d + "<
  <th scope="col">Еденица измерения</th>
      </tr>
     </thead>
-    <tbody about="{{about}}">
+    <tbody resource="{{about}}" typeof="dbr:Sample_(material)">
 {% for d in data %}
-    <tr property="gp:contains" resource="{{d['elAmount']['value']}}">
+    <tr property="gp:contains" resource="{{d['elAmount']['value']}}" typeof="gp:Amount">
  <td class="stored"
      contenteditable="false"
      property="gp:pollutedby"
      resource="{{d['element']['value']}}"
+     typeof="dbr:Matter"
      >{{label(d['element']['value'])}}</td>
  <td class="edited stored"
      contenteditable="false"
