@@ -187,10 +187,11 @@ def sample_list():
 
 
 SELECT_AMOUNTS = PREFIXES + """
-SELECT ?elAmount ?element ?amount ?unit
+SELECT ?elAmount ?element ?amount ?unit ?probe_name
 WHERE
 {
   ?probe a <http://dbpedia.org/resource/Sample_(material)> .
+  ?probe rdfs:label ?probe_name .
   ?probe gp:contains  ?elAmount .
   ?elAmount gp:amount ?amount .
   ?elAmount gp:pollutedBy ?element .
@@ -231,7 +232,8 @@ def sampe_edit():
     return render_template("probe.html",
                            data=data,
                            label=label,
-                           about=str(uri))
+                           about=str(uri),
+                           probe_name=data[0]["probe_name"]["value"])
 
 
 @app.route('/api/v1.0/save', methods=['POST'])
@@ -248,7 +250,8 @@ def save():
                            "input": html
                        })
     js = rq.json()
-
+    # TODO: Delete all edited data
+    # and add imported.
     ss = io.StringIO(js["serialized"])
     g = Graph()
     binds(g)
