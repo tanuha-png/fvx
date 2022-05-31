@@ -131,7 +131,8 @@ def gettemplate(what):
 
 
 # KG_FILENAME = KG_FILE_DIR+"database-from-python.ttl"
-KG_FILENAME = KG_FILE_DIR + "database-from-python.rdf"
+KG_FN = "database-from-python.rdf"
+KG_FILENAME = KG_FILE_DIR + KG_FN
 NAMES_FILENAME = KG_FILE_DIR + "names.rdf"
 
 
@@ -190,14 +191,31 @@ SELECT_AMOUNTS = PREFIXES + """
 SELECT ?elAmount ?element ?amount ?unit ?probe_name
 WHERE
 {
+#WHERE
   ?probe a <http://dbpedia.org/resource/Sample_(material)> .
+#DELETEE
   ?probe rdfs:label ?probe_name .
   ?probe gp:contains  ?elAmount .
   ?elAmount gp:amount ?amount .
   ?elAmount gp:pollutedBy ?element .
   ?elAmount gp:unit ?unit .
+#DELETEE
+#WHERE
 }
-  LIMIT 200
+#  LIMIT 200
+"""
+
+DELETE_AMOUNTS = PREFIXES + """
+
+DELETE
+{
+@DELETEE@
+}
+WHERE
+{
+@WHERE@
+}
+
 """
 
 
@@ -219,7 +237,8 @@ def sampe_edit():
     #                     })
     uri = URIRef(uri)
     print("About:", uri)
-    r = KG.query(SELECT_AMOUNTS, initBindings={"probe": uri})
+    r = KG.query(SELECT_AMOUNTS,
+                 initBindings={"probe": uri})
 
     ss = io.BytesIO()
     r.serialize(destination=ss, format='json')
@@ -228,17 +247,21 @@ def sampe_edit():
     js = json.load(ss)
     data = js["results"]["bindings"]
     # pprint(data)
-
+    name = data[0]["probe_name"]["value"] if len(data)>0 else ''
     return render_template("probe.html",
                            data=data,
                            label=label,
                            about=str(uri),
-                           probe_name=data[0]["probe_name"]["value"])
+                           probe_name=name)
 
 
 @app.route('/api/v1.0/save', methods=['POST'])
 def save():
-    html = request.get_data(as_text=True)
+    js = request.json
+    html=js["html"]
+    uri =js["uri"]
+
+
     # print(html)
     o = open("html.html", "w")
     o.write(html)
@@ -253,12 +276,18 @@ def save():
     # TODO: Delete all edited data
     # and add imported.
     ss = io.StringIO(js["serialized"])
-    g = Graph()
-    binds(g)
+    g = KG
+
+    _, where, _ = SELECT_AMOUNTS.split("#WHERE", maxsplit=2)
+    _, deletee, _ = SELECT_AMOUNTS.split("#DELETEE", maxsplit=2)
+
+    delq=DELETE_AMOUNTS.replace("@DELETEE@", deletee).replace("@WHERE@", where)
+    print(delq)
+    g.update(delq,
+             initBindings={"probe": uri})
+    # binds(g)
     g.parse(ss)
-    g.serialize(destination="_.ttl", encoding="utf8", format="turtle")
-    # g = pyRdfa().graph_from_source(ss,rdfOutput=True)
-    # g.serialize(destination="fromhtml.ttl",format="turtle", encoding="utf-8")
+    g.serialize(destination=KG_FN, encoding="utf8", format="turtle")
     msgs = js["messages"]
     answer = {"result": "OK", "messages": msgs}
     return jsonify(answer)

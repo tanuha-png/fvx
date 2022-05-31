@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE xhtml>
+<html xmlns=http://www.w3.org/1999/xhtml
+      xmlns:xml=http://www.w3.org/XML/1998/namespace>
 <head>
 
 <meta charset="UTF-8">
@@ -47,8 +48,10 @@
         $.ajax({
           type: "POST",
           url: EP,
-          data: root,
-          dataType: "html"
+          data: JSON.stringify({"html":root,
+                                "uri":"{{about}}"}),
+          contentType: "application/json; charset=utf-8",
+          dataType: "json"
         }).done(function (data) {
           $("#messageBox").text(data);
         });
@@ -62,25 +65,30 @@
           editable("false");
           savedata();
         });
+        $("#copy").on("click", function() {
+          var node = $(".copyable").last().clone();
+          node.find(".cleared").text("");
+          node.appendTo(".appendTo");
+        });
       });
     </script>
-
 </head>
 
 <body prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# owl: http://www.w3.org/2002/07/owl# xsd: http://www.w3.org/2001/XMLSchema# rdfa: http://www.w3.org/ns/rdfa# dcterms: http://purl.org/dc/terms/ dctypes: http://purl.org/dc/dcmitype/ foaf: http://xmlns.com/foaf/0.1/ pimspace: http://www.w3.org/ns/pim/space# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# mem: http://mementoweb.org/ns# qb: http://purl.org/linked-data/cube# schema: http://schema.org/ void: http://rdfs.org/ns/void# rsa: http://www.w3.org/ns/auth/rsa# cert: http://www.w3.org/ns/auth/cert# wgs: http://www.w3.org/2003/01/geo/wgs84_pos# bibo: http://purl.org/ontology/bibo/ sioc: http://rdfs.org/sioc/ns# doap: http://usefulinc.com/ns/doap# dbr: http://dbpedia.org/resource/ dbp: http://dbpedia.org/property/ sio: http://semanticscience.org/resource/ opmw: http://www.opmw.org/ontology/ deo: http://purl.org/spar/deo/ doco: http://purl.org/spar/doco/ cito: http://purl.org/spar/cito/ fabio: http://purl.org/spar/fabio/ oa: http://www.w3.org/ns/oa# as: https://www.w3.org/ns/activitystreams# ldp: http://www.w3.org/ns/ldp# solid: http://www.w3.org/ns/solid/terms# acl: http://www.w3.org/ns/auth/acl# odrl: http://www.w3.org/ns/odrl/2/ dio: https://w3id.org/dio# rel: https://www.w3.org/ns/iana/link-relations/relation#  gp: http://irnok.net/ontology/geopollution#"
       resource="{{about}}"
       typeof="dbr:Sample_(material) owl:NamedIndividual">
 
-
+<!-- TODO add language tag to rdfs:label -->
   <h1>Данные о пробе <span property="rdfs:label">{{probe_name}}</span></h1>"
   <div id="messageBox"></div>
 <div id="button" class="btn-group" role="group" >
   <button id="editor" type="button" class="btn btn-outline-success">Редактировать</button>
   <button id="save" type="button" class="btn btn-success">Сохранить</button>
+  <button id="copy" type="button" class="btn btn-success">Добавить строку</button>
 </div>
 
 <div id="table">
-    <table class="table table-bordered table-hover">
+    <table class="table table-bordered table-hover" lang="en" xml:lang="en">
     <thead class="table-active">
      <tr>
  <th scope="col">Вещество</th>
@@ -88,22 +96,28 @@
  <th scope="col">Еденица измерения</th>
      </tr>
     </thead>
-    <tbody>
+    <tbody class="appendTo">
 {% for d in data %}
-    <tr property="gp:contains" resource="{{d['elAmount']['value']}}" typeof="gp:Amount">
- <td class="stored"
-     contenteditable="false"
-     property="gp:pollutedby"
-     resource="{{d['element']['value']}}"
-     typeof="dbr:Matter"
-     >{{label(d['element']['value'])}}</td>
- <td class="edited stored"
-     contenteditable="false"
-     property="gp:amount"
-     datatype="xsd:float"
-     >{{d['amount']['value']}}</td>
- <td property="gp:unit" resource={{d['unit']['value']}}>{{label(d['unit']['value'])}}</td>
-    </tr>
+<tr property="gp:contains"
+    class="copyable"
+    resource="{{d['elAmount']['value']}}"
+    typeof="gp:Amount">
+  <td class="stored"
+      contenteditable="false"
+      property="gp:pollutedby"
+      resource="{{d['element']['value']}}"
+      typeof="dbr:Matter"
+      >{{label(d['element']['value'])}}</td>
+  <td class="edited stored cleared"
+      contenteditable="false"
+      property="gp:amount"
+      datatype="xsd:float"
+      >{{d['amount']['value']}}</td>
+  <td property="gp:unit"
+      resource={{d['unit']['value']}}
+      xml:lang="en"
+      >{{label(d['unit']['value'])}}</td>
+</tr>
 {% endfor %}
     </tbody>
     </table>
