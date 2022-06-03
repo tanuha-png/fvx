@@ -5,6 +5,8 @@ from rdflib import Graph
 import requests as rq
 from pprint import pprint
 from SPARQLWrapper import SPARQLWrapper, JSON, XML, RDFXML
+from lxml import etree
+
 import os
 
 app = Flask(__name__)
@@ -204,7 +206,14 @@ def sampe_edit():
     return render_template("probe.html", data=data, label=label)
 
 
-# url_for('static', filename='fvx-html.xsl')
-# url_for('static', filename='fvx-json.xsl')
-# url_for('static', filename='foaf-vix.css')
-# url_for('static', filename='foaf-vix.js')
+
+def parseXML():
+    root = etree.iterparse(r'C:\Users\fvx\y.xml')
+    for element in etree.iterparse(root, encoding='utf8'):
+        print((element.tag, element.text))
+
+
+P = Graph()
+P.parseXML()
+
+
