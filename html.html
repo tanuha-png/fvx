@@ -9,7 +9,7 @@
 
     <style type="text/css">
  div#table {
-    width: 60%; /* Ширина */
+    width: 60%; /* РЁРёСЂРёРЅР° */
     text-align: center;
     margin-left:250px; }
 
@@ -37,6 +37,22 @@
         });
       };
 
+      var alertPlaceholder = null;
+
+      const divalert = (message, type) => {
+        const wrapper = document.createElement('div')
+        wrapper.innerHTML = [
+          `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+          `   <div>${message}</div>`,
+          '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+          '</div>'
+        ].join('')
+
+        alertPlaceholder = document.getElementById('liveAlertPlaceholder');
+
+        alertPlaceholder.append(wrapper);
+      }
+
       function savedata() {
         var items = [];
 
@@ -46,12 +62,12 @@
           type: "POST",
           url: EP,
           data: JSON.stringify({"html":root,
-                                "uri":"http://irnok.net/ontology/database/UGS-0215"}),
+                                "uri":"http://irnok.net/ontology/database/UGS-0211"}),
           contentType: "application/json; charset=utf-8",
           dataType: "json"
         }).done(function (data) {
-          $("#messageBox").text(data);
-        });w
+          divalert(data["message"], "success");
+        });
       };
 
       $(document).ready(function(){
@@ -67,216 +83,225 @@
           node.find(".cleared").text("");
           node.appendTo(".appendTo");
         });
-      });
-    </script>
-</head>
 
-<body prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# owl: http://www.w3.org/2002/07/owl# xsd: http://www.w3.org/2001/XMLSchema# rdfa: http://www.w3.org/ns/rdfa# dcterms: http://purl.org/dc/terms/ dctypes: http://purl.org/dc/dcmitype/ foaf: http://xmlns.com/foaf/0.1/ pimspace: http://www.w3.org/ns/pim/space# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# mem: http://mementoweb.org/ns# qb: http://purl.org/linked-data/cube# schema: http://schema.org/ void: http://rdfs.org/ns/void# rsa: http://www.w3.org/ns/auth/rsa# cert: http://www.w3.org/ns/auth/cert# wgs: http://www.w3.org/2003/01/geo/wgs84_pos# bibo: http://purl.org/ontology/bibo/ sioc: http://rdfs.org/sioc/ns# doap: http://usefulinc.com/ns/doap# dbr: http://dbpedia.org/resource/ dbp: http://dbpedia.org/property/ sio: http://semanticscience.org/resource/ opmw: http://www.opmw.org/ontology/ deo: http://purl.org/spar/deo/ doco: http://purl.org/spar/doco/ cito: http://purl.org/spar/cito/ fabio: http://purl.org/spar/fabio/ oa: http://www.w3.org/ns/oa# as: https://www.w3.org/ns/activitystreams# ldp: http://www.w3.org/ns/ldp# solid: http://www.w3.org/ns/solid/terms# acl: http://www.w3.org/ns/auth/acl# odrl: http://www.w3.org/ns/odrl/2/ dio: https://w3id.org/dio# rel: https://www.w3.org/ns/iana/link-relations/relation#  gp: http://irnok.net/ontology/geopollution#" resource="http://irnok.net/ontology/database/UGS-0215" typeof="dbr:Sample_(material) owl:NamedIndividual">
+      });
+      </script>
+<style type="text/css">#ad-rotator,.ad-notice,#related_ads,.ad-cover,.topAd,.atf-wrapper,.boxAds,.logo-ad,#centerads,#adHeader,.adlink,.adsbottombox,.adMiddle,#top-ad,#adcontainer,.ad728x90,.ads-banner,#ads-wrapper,.bottom_ad_block,#adtop,.ad_body,.article_ad,.ads-list,.adHolder,#header_ad,.adv-list,#adblock,#AdContainer,.img_ad,.textads,.ad_item,.side-ad,.ad-center,.contentAds,.custom-ad,.content-ad,.vertical-ads,#adcontainer1,[id^="div-gpt-ad"],.ads-top,.advertisment,.advertiser,#msad,.ad-text,div[id^="div-gpt-"],#advertise,.banner-ad-container,.takeover-ad,.adtable,#side-ad,a[href^="https://ndt5.net/"],.adtag,.adText,.adbanner,#ad-top,.block-ad,.adban,#ad_space,a[href^="https://natour.naughtyamerica.com/track/"],.ads-inline,div[data-ad-targeting],.container-ads,.jnews_header_top_ads,.greyAd,.adsList,[href^="https://www.restoro.com/"],.advertSlider,#ad-p3,.ad-root,.adLink,.bannerad,.ad_box,[href^="http://globsads.com/"],#headerAd,.advert-container,#footer-ads,.ad-icon,#ad-carousel,#ad-wrapper,.ad_caption,.promoAd,.ad-area,.advBox,.jeg_ad,.middlead,.box-radvert,.block-sponsor,.adv-box,a[onmousedown^="this.href='https://paid.outbrain.com/network/redir?"][target="_blank"],.ads.widget,.ads-title,.large-advert,.adwords,.item-ads,.ads-link,.ad-outside,.ad-links,.after-post-ad,.region-ad-top,.footer-ad,.sp-ad,#adsContainer,.ad-label,.ad-wrapper,a[href^="https://ad.doubleclick.net/"],.page-ad,.ad-button,.ad_block,.advertisement-block,.ads_right,.adthrive,.category-advertorial,.fixed_ad,a[href^="https://badoinkvr.com/"],.large-right-ad,#ads-col,.advertisement__leaderboard,.jeg_ad_top,div[id^="dfp-ad-"],.textad,.home-ad,.Adsense,.gallery-ad,.ads-header,.module_ad,.serversidenativead,.adverts,.advert_list,.inline-ad,.nativead,.adslot,#prerollAd,.display_ad,.ad_global_header,.ad-sidebar,.article-advert,.dfp-ad-unit,.ads-area,.ad_title,.overlay-ads,.adverttext,.adChoicesLogo,.ad_container,div[data-adunit],#ad-header,div[id^="ezoic-pub-ad-"],.ad-active,.advert_area,.dfp-tag-wrapper,#banner-ad,.adright,.category-ads:not(html):not(body),#adspace,.adActive,.ad-source,.frn_contAdHead,.reklama,#adsensewide,[href^="https://www.reimageplus.com/"],.ProductAd,.node-ad,.sponsoredItem,.topads,#right_ads,[href^="https://mypillow.com/"] > img,#topbannerad,.ad-img,#ad_thread_first_post_content,.advert2,a[href^="https://www.sheetmusicplus.com/"][href*="?aff_id="],.adscontainer,#gwd-ad,.ad-title,.ad_spot,.ads_wrapper,.adsleft,.ad_bottom,#ad-top-banner-placeholder,.sidebar-ads,.dfp-banner,#article_ad,.videos-ad,.adbar,.ads1,.header_ad,.adv-banner,.product-ad,[href^="https://www.mypillow.com/"] > img,#adcontent,.adsBlock,.adsense_wrapper,[id^="google_ads_iframe"],.content_ads,.sponsored-post,.header-ad-row,.page_ad,.is-sponsored,.single-ads,.category-ad:not(html):not(body),.video-ads,.adrect,.adcenter,.advertorial,.adResult,.ad-content,.adshome,div[data-native_ad],.has-ad,.plain-ad,#google-ads,.ad-box,.ad01,.column-ad,.smallads{display:none !important;}
+</style><style type="text/css">#ad-rotator,.ad-notice,#related_ads,.ad-cover,.topAd,.atf-wrapper,.boxAds,.logo-ad,#centerads,#adHeader,.adlink,.adsbottombox,.adMiddle,#top-ad,#adcontainer,.ad728x90,.ads-banner,#ads-wrapper,.bottom_ad_block,#adtop,.ad_body,.article_ad,.ads-list,.adHolder,#header_ad,.adv-list,#adblock,#AdContainer,.img_ad,.textads,.ad_item,.side-ad,.ad-center,.contentAds,.custom-ad,.content-ad,.vertical-ads,#adcontainer1,[id^="div-gpt-ad"],.ads-top,.advertisment,.advertiser,#msad,.ad-text,div[id^="div-gpt-"],#advertise,.banner-ad-container,.takeover-ad,.adtable,#side-ad,a[href^="https://ndt5.net/"],.adtag,.adText,.adbanner,#ad-top,.block-ad,.adban,#ad_space,a[href^="https://natour.naughtyamerica.com/track/"],.ads-inline,div[data-ad-targeting],.container-ads,.jnews_header_top_ads,.greyAd,.adsList,[href^="https://www.restoro.com/"],.advertSlider,#ad-p3,.ad-root,.adLink,.bannerad,.ad_box,[href^="http://globsads.com/"],#headerAd,.advert-container,#footer-ads,.ad-icon,#ad-carousel,#ad-wrapper,.ad_caption,.promoAd,.ad-area,.advBox,.jeg_ad,.middlead,.box-radvert,.block-sponsor,.adv-box,a[onmousedown^="this.href='https://paid.outbrain.com/network/redir?"][target="_blank"],.ads.widget,.ads-title,.large-advert,.adwords,.item-ads,.ads-link,.ad-outside,.ad-links,.after-post-ad,.region-ad-top,.footer-ad,.sp-ad,#adsContainer,.ad-label,.ad-wrapper,a[href^="https://ad.doubleclick.net/"],.page-ad,.ad-button,.ad_block,.advertisement-block,.ads_right,.adthrive,.category-advertorial,.fixed_ad,a[href^="https://badoinkvr.com/"],.large-right-ad,#ads-col,.advertisement__leaderboard,.jeg_ad_top,div[id^="dfp-ad-"],.textad,.home-ad,.Adsense,.gallery-ad,.ads-header,.module_ad,.serversidenativead,.adverts,.advert_list,.inline-ad,.nativead,.adslot,#prerollAd,.display_ad,.ad_global_header,.ad-sidebar,.article-advert,.dfp-ad-unit,.ads-area,.ad_title,.overlay-ads,.adverttext,.adChoicesLogo,.ad_container,div[data-adunit],#ad-header,div[id^="ezoic-pub-ad-"],.ad-active,.advert_area,.dfp-tag-wrapper,#banner-ad,.adright,.category-ads:not(html):not(body),#adspace,.adActive,.ad-source,.frn_contAdHead,.reklama,#adsensewide,[href^="https://www.reimageplus.com/"],.ProductAd,.node-ad,.sponsoredItem,.topads,#right_ads,[href^="https://mypillow.com/"] > img,#topbannerad,.ad-img,#ad_thread_first_post_content,.advert2,a[href^="https://www.sheetmusicplus.com/"][href*="?aff_id="],.adscontainer,#gwd-ad,.ad-title,.ad_spot,.ads_wrapper,.adsleft,.ad_bottom,#ad-top-banner-placeholder,.sidebar-ads,.dfp-banner,#article_ad,.videos-ad,.adbar,.ads1,.header_ad,.adv-banner,.product-ad,[href^="https://www.mypillow.com/"] > img,#adcontent,.adsBlock,.adsense_wrapper,[id^="google_ads_iframe"],.content_ads,.sponsored-post,.header-ad-row,.page_ad,.is-sponsored,.single-ads,.category-ad:not(html):not(body),.video-ads,.adrect,.adcenter,.advertorial,.adResult,.ad-content,.adshome,div[data-native_ad],.has-ad,.plain-ad,#google-ads,.ad-box,.ad01,.column-ad,.smallads{display:none !important;}
+</style></head>
+
+<body prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# owl: http://www.w3.org/2002/07/owl# xsd: http://www.w3.org/2001/XMLSchema# rdfa: http://www.w3.org/ns/rdfa# dcterms: http://purl.org/dc/terms/ dctypes: http://purl.org/dc/dcmitype/ foaf: http://xmlns.com/foaf/0.1/ pimspace: http://www.w3.org/ns/pim/space# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# mem: http://mementoweb.org/ns# qb: http://purl.org/linked-data/cube# schema: http://schema.org/ void: http://rdfs.org/ns/void# rsa: http://www.w3.org/ns/auth/rsa# cert: http://www.w3.org/ns/auth/cert# wgs: http://www.w3.org/2003/01/geo/wgs84_pos# bibo: http://purl.org/ontology/bibo/ sioc: http://rdfs.org/sioc/ns# doap: http://usefulinc.com/ns/doap# dbr: http://dbpedia.org/resource/ dbp: http://dbpedia.org/property/ sio: http://semanticscience.org/resource/ opmw: http://www.opmw.org/ontology/ deo: http://purl.org/spar/deo/ doco: http://purl.org/spar/doco/ cito: http://purl.org/spar/cito/ fabio: http://purl.org/spar/fabio/ oa: http://www.w3.org/ns/oa# as: https://www.w3.org/ns/activitystreams# ldp: http://www.w3.org/ns/ldp# solid: http://www.w3.org/ns/solid/terms# acl: http://www.w3.org/ns/auth/acl# odrl: http://www.w3.org/ns/odrl/2/ dio: https://w3id.org/dio# rel: https://www.w3.org/ns/iana/link-relations/relation#  gp: http://irnok.net/ontology/geopollution#" resource="http://irnok.net/ontology/database/UGS-0211" typeof="dbr:Sample_(material) owl:NamedIndividual">
 
 <!-- TODO add language tag to rdfs:label -->
-  <h1>Данные о пробе <span property="rdfs:label">UGS-0215</span></h1>"
-  <div id="messageBox"></div>
+  <h1>Р”Р°РЅРЅС‹Рµ Рѕ РїСЂРѕР±Рµ <span property="rdfs:label" lang="en" xml:lang="en">UGS-0211</span></h1>
+  <div id="liveAlertPlaceholder"></div>
 <div id="button" class="btn-group" role="group">
-  <button id="editor" type="button" class="btn btn-success">Редактировать</button>
-  <button id="save" type="button" class="btn btn-outline-success">Сохранить</button>
-  <button id="copy" type="button" class="btn btn-success">Добавить строку</button>
+  <button id="editor" type="button" class="btn btn-success">Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ</button>
+  <button id="save" type="button" class="btn btn-outline-success">РЎРѕС…СЂР°РЅРёС‚СЊ</button>
+  <button id="copy" type="button" class="btn btn-success">Р”РѕР±Р°РІРёС‚СЊ СЃС‚СЂРѕРєСѓ</button>
 </div>
 
 <div id="table">
-    <table class="table table-bordered table-hover" lang="en" xml:lang="en">
+    <table class="table table-bordered table-hover">
     <thead class="table-active">
      <tr>
- <th scope="col">Вещество</th>
- <th scope="col">Количество</th>
- <th scope="col">Еденица измерения</th>
+ <th scope="col">Р’РµС‰РµСЃС‚РІРѕ</th>
+ <th scope="col">РљРѕР»РёС‡РµСЃС‚РІРѕ</th>
+ <th scope="col">Р•РґРµРЅРёС†Р° РёР·РјРµСЂРµРЅРёСЏ</th>
      </tr>
     </thead>
     <tbody class="appendTo">
 
-<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0215-Carbon-amount" typeof="gp:Amount">
-  <td class="stored" contenteditable="false" property="gp:pollutedby" resource="http://dbpedia.org/resource/Carbon" typeof="dbr:Matter">Углерод</td>
-  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">1.86</td>
-  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en">PPM</td>
+<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0211-Carbon-amount" typeof="gp:Amount">
+  <td class="stored" contenteditable="false" property="gp:pollutedBy" resource="http://dbpedia.org/resource/Carbon" typeof="dbr:Matter">РЈРіР»РµСЂРѕРґ</td>
+  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">0.3234</td>
+  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en" lang="en">PPM</td>
 </tr>
 
-<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0215-Silicon_dioxide-amount" typeof="gp:Amount">
-  <td class="stored" contenteditable="false" property="gp:pollutedby" resource="http://dbpedia.org/resource/Silicon_dioxide" typeof="dbr:Matter">Диоксид кремния</td>
-  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">72.19</td>
-  <td property="gp:unit" resource="http://dbpedia.org/resource/Percentage" xml:lang="en">Процент</td>
+<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0211-Silicon_dioxide-amount" typeof="gp:Amount">
+  <td class="stored" contenteditable="false" property="gp:pollutedBy" resource="http://dbpedia.org/resource/Silicon_dioxide" typeof="dbr:Matter">Р”РёРѕРєСЃРёРґ РєСЂРµРјРЅРёСЏ</td>
+  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">53.39</td>
+  <td property="gp:unit" resource="http://dbpedia.org/resource/Percentage" xml:lang="en" lang="en">РџСЂРѕС†РµРЅС‚</td>
 </tr>
 
-<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0215-Aluminium_oxide-amount" typeof="gp:Amount">
-  <td class="stored" contenteditable="false" property="gp:pollutedby" resource="http://dbpedia.org/resource/Aluminium_oxide" typeof="dbr:Matter">Оксид алюминия</td>
-  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">11.09</td>
-  <td property="gp:unit" resource="http://dbpedia.org/resource/Percentage" xml:lang="en">Процент</td>
+<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0211-Aluminium_oxide-amount" typeof="gp:Amount">
+  <td class="stored" contenteditable="false" property="gp:pollutedBy" resource="http://dbpedia.org/resource/Aluminium_oxide" typeof="dbr:Matter">РћРєСЃРёРґ Р°Р»СЋРјРёРЅРёСЏ</td>
+  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">13.88</td>
+  <td property="gp:unit" resource="http://dbpedia.org/resource/Percentage" xml:lang="en" lang="en">РџСЂРѕС†РµРЅС‚</td>
 </tr>
 
-<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0215-Sodium_oxide-amount" typeof="gp:Amount">
-  <td class="stored" contenteditable="false" property="gp:pollutedby" resource="http://dbpedia.org/resource/Sodium_oxide" typeof="dbr:Matter">Оксид натрия</td>
-  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">1.558</td>
-  <td property="gp:unit" resource="http://dbpedia.org/resource/Percentage" xml:lang="en">Процент</td>
+<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0211-Sodium_oxide-amount" typeof="gp:Amount">
+  <td class="stored" contenteditable="false" property="gp:pollutedBy" resource="http://dbpedia.org/resource/Sodium_oxide" typeof="dbr:Matter">РћРєСЃРёРґ РЅР°С‚СЂРёСЏ</td>
+  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">1.996</td>
+  <td property="gp:unit" resource="http://dbpedia.org/resource/Percentage" xml:lang="en" lang="en">РџСЂРѕС†РµРЅС‚</td>
 </tr>
 
-<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0215-Potassium_oxide-amount" typeof="gp:Amount">
-  <td class="stored" contenteditable="false" property="gp:pollutedby" resource="http://dbpedia.org/resource/Potassium_oxide" typeof="dbr:Matter">Оксид калия</td>
-  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">2.727</td>
-  <td property="gp:unit" resource="http://dbpedia.org/resource/Percentage" xml:lang="en">Процент</td>
+<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0211-Potassium_oxide-amount" typeof="gp:Amount">
+  <td class="stored" contenteditable="false" property="gp:pollutedBy" resource="http://dbpedia.org/resource/Potassium_oxide" typeof="dbr:Matter">РћРєСЃРёРґ РєР°Р»РёСЏ</td>
+  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">1.281</td>
+  <td property="gp:unit" resource="http://dbpedia.org/resource/Percentage" xml:lang="en" lang="en">РџСЂРѕС†РµРЅС‚</td>
 </tr>
 
-<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0215-Calcium_oxide-amount" typeof="gp:Amount">
-  <td class="stored" contenteditable="false" property="gp:pollutedby" resource="http://dbpedia.org/resource/Calcium_oxide" typeof="dbr:Matter">Оксид кальция</td>
-  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">1.98</td>
-  <td property="gp:unit" resource="http://dbpedia.org/resource/Percentage" xml:lang="en">Процент</td>
+<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0211-Calcium_oxide-amount" typeof="gp:Amount">
+  <td class="stored" contenteditable="false" property="gp:pollutedBy" resource="http://dbpedia.org/resource/Calcium_oxide" typeof="dbr:Matter">РћРєСЃРёРґ РєР°Р»СЊС†РёСЏ</td>
+  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">5.16</td>
+  <td property="gp:unit" resource="http://dbpedia.org/resource/Percentage" xml:lang="en" lang="en">РџСЂРѕС†РµРЅС‚</td>
 </tr>
 
-<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0215-Magnesium_oxide-amount" typeof="gp:Amount">
-  <td class="stored" contenteditable="false" property="gp:pollutedby" resource="http://dbpedia.org/resource/Magnesium_oxide" typeof="dbr:Matter">Оксид магния</td>
-  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">0.87</td>
-  <td property="gp:unit" resource="http://dbpedia.org/resource/Percentage" xml:lang="en">Процент</td>
+<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0211-Magnesium_oxide-amount" typeof="gp:Amount">
+  <td class="stored" contenteditable="false" property="gp:pollutedBy" resource="http://dbpedia.org/resource/Magnesium_oxide" typeof="dbr:Matter">РћРєСЃРёРґ РјР°РіРЅРёСЏ</td>
+  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">3.03</td>
+  <td property="gp:unit" resource="http://dbpedia.org/resource/Percentage" xml:lang="en" lang="en">РџСЂРѕС†РµРЅС‚</td>
 </tr>
 
-<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0215-Titanium_dioxide-amount" typeof="gp:Amount">
-  <td class="stored" contenteditable="false" property="gp:pollutedby" resource="http://dbpedia.org/resource/Titanium_dioxide" typeof="dbr:Matter">Оксид титана(IV)</td>
-  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">0.499</td>
-  <td property="gp:unit" resource="http://dbpedia.org/resource/Percentage" xml:lang="en">Процент</td>
+<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0211-Titanium_dioxide-amount" typeof="gp:Amount">
+  <td class="stored" contenteditable="false" property="gp:pollutedBy" resource="http://dbpedia.org/resource/Titanium_dioxide" typeof="dbr:Matter">РћРєСЃРёРґ С‚РёС‚Р°РЅР°(IV)</td>
+  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">0.697</td>
+  <td property="gp:unit" resource="http://dbpedia.org/resource/Percentage" xml:lang="en" lang="en">РџСЂРѕС†РµРЅС‚</td>
 </tr>
 
-<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0215-Manganese(II)_oxide-amount" typeof="gp:Amount">
-  <td class="stored" contenteditable="false" property="gp:pollutedby" resource="http://dbpedia.org/resource/Manganese(II)_oxide" typeof="dbr:Matter">Оксид марганца(II)</td>
-  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">0.091</td>
-  <td property="gp:unit" resource="http://dbpedia.org/resource/Percentage" xml:lang="en">Процент</td>
+<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0211-Manganese(II)_oxide-amount" typeof="gp:Amount">
+  <td class="stored" contenteditable="false" property="gp:pollutedBy" resource="http://dbpedia.org/resource/Manganese(II)_oxide" typeof="dbr:Matter">РћРєСЃРёРґ РјР°СЂРіР°РЅС†Р°(II)</td>
+  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">0.337</td>
+  <td property="gp:unit" resource="http://dbpedia.org/resource/Percentage" xml:lang="en" lang="en">РџСЂРѕС†РµРЅС‚</td>
 </tr>
 
-<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0215-Iron(III)_oxide-amount" typeof="gp:Amount">
-  <td class="stored" contenteditable="false" property="gp:pollutedby" resource="http://dbpedia.org/resource/Iron(III)_oxide" typeof="dbr:Matter">Гематит</td>
-  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">2.204</td>
-  <td property="gp:unit" resource="http://dbpedia.org/resource/Percentage" xml:lang="en">Процент</td>
+<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0211-Iron(III)_oxide-amount" typeof="gp:Amount">
+  <td class="stored" contenteditable="false" property="gp:pollutedBy" resource="http://dbpedia.org/resource/Iron(III)_oxide" typeof="dbr:Matter">Р“РµРјР°С‚РёС‚</td>
+  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">6.554</td>
+  <td property="gp:unit" resource="http://dbpedia.org/resource/Percentage" xml:lang="en" lang="en">РџСЂРѕС†РµРЅС‚</td>
 </tr>
 
-<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0215-Phosphorus_trioxide-amount" typeof="gp:Amount">
-  <td class="stored" contenteditable="false" property="gp:pollutedby" resource="http://dbpedia.org/resource/Phosphorus_trioxide" typeof="dbr:Matter">Оксид фосфора(III)</td>
-  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">0.069</td>
-  <td property="gp:unit" resource="http://dbpedia.org/resource/Percentage" xml:lang="en">Процент</td>
+<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0211-Phosphorus_trioxide-amount" typeof="gp:Amount">
+  <td class="stored" contenteditable="false" property="gp:pollutedBy" resource="http://dbpedia.org/resource/Phosphorus_trioxide" typeof="dbr:Matter">РћРєСЃРёРґ С„РѕСЃС„РѕСЂР°(III)</td>
+  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">0.162</td>
+  <td property="gp:unit" resource="http://dbpedia.org/resource/Percentage" xml:lang="en" lang="en">РџСЂРѕС†РµРЅС‚</td>
 </tr>
 
-<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0215-Sulfur-amount" typeof="gp:Amount">
-  <td class="stored" contenteditable="false" property="gp:pollutedby" resource="http://dbpedia.org/resource/Sulfur" typeof="dbr:Matter">Сера</td>
-  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">118.0</td>
-  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en">PPM</td>
+<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0211-Sulfur-amount" typeof="gp:Amount">
+  <td class="stored" contenteditable="false" property="gp:pollutedBy" resource="http://dbpedia.org/resource/Sulfur" typeof="dbr:Matter">РЎРµСЂР°</td>
+  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">189.0</td>
+  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en" lang="en">PPM</td>
 </tr>
 
-<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0215-Fluorine-amount" typeof="gp:Amount">
-  <td class="stored" contenteditable="false" property="gp:pollutedby" resource="http://dbpedia.org/resource/Fluorine" typeof="dbr:Matter">Фтор</td>
-  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">304.0</td>
-  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en">PPM</td>
+<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0211-Fluorine-amount" typeof="gp:Amount">
+  <td class="stored" contenteditable="false" property="gp:pollutedBy" resource="http://dbpedia.org/resource/Fluorine" typeof="dbr:Matter">Р¤С‚РѕСЂ</td>
+  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">306.0</td>
+  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en" lang="en">PPM</td>
 </tr>
 
-<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0215-Vanadium-amount" typeof="gp:Amount">
-  <td class="stored" contenteditable="false" property="gp:pollutedby" resource="http://dbpedia.org/resource/Vanadium" typeof="dbr:Matter">Ванадий</td>
-  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">51.0</td>
-  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en">PPM</td>
+<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0211-Vanadium-amount" typeof="gp:Amount">
+  <td class="stored" contenteditable="false" property="gp:pollutedBy" resource="http://dbpedia.org/resource/Vanadium" typeof="dbr:Matter">Р’Р°РЅР°РґРёР№</td>
+  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">143.0</td>
+  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en" lang="en">PPM</td>
 </tr>
 
-<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0215-Chromium-amount" typeof="gp:Amount">
-  <td class="stored" contenteditable="false" property="gp:pollutedby" resource="http://dbpedia.org/resource/Chromium" typeof="dbr:Matter">Хром</td>
-  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">38.0</td>
-  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en">PPM</td>
+<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0211-Chromium-amount" typeof="gp:Amount">
+  <td class="stored" contenteditable="false" property="gp:pollutedBy" resource="http://dbpedia.org/resource/Chromium" typeof="dbr:Matter">РҐСЂРѕРј</td>
+  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">111.0</td>
+  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en" lang="en">PPM</td>
 </tr>
 
-<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0215-Cobalt-amount" typeof="gp:Amount">
-  <td class="stored" contenteditable="false" property="gp:pollutedby" resource="http://dbpedia.org/resource/Cobalt" typeof="dbr:Matter">Кобальт</td>
-  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">5.7</td>
-  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en">PPM</td>
-</tr>
-
-<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0215-Nickel-amount" typeof="gp:Amount">
-  <td class="stored" contenteditable="false" property="gp:pollutedby" resource="http://dbpedia.org/resource/Nickel" typeof="dbr:Matter">Никель</td>
-  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">15.0</td>
-  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en">PPM</td>
-</tr>
-
-<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0215-Copper-amount" typeof="gp:Amount">
-  <td class="stored" contenteditable="false" property="gp:pollutedby" resource="http://dbpedia.org/resource/Copper" typeof="dbr:Matter">Медь</td>
-  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">14.0</td>
-  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en">PPM</td>
-</tr>
-
-<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0215-Zinc-amount" typeof="gp:Amount">
-  <td class="stored" contenteditable="false" property="gp:pollutedby" resource="http://dbpedia.org/resource/Zinc" typeof="dbr:Matter">Цинк</td>
-  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">35.0</td>
-  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en">PPM</td>
-</tr>
-
-<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0215-Gallium-amount" typeof="gp:Amount">
-  <td class="stored" contenteditable="false" property="gp:pollutedby" resource="http://dbpedia.org/resource/Gallium" typeof="dbr:Matter">Галлий</td>
-  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">10.0</td>
-  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en">PPM</td>
-</tr>
-
-<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0215-Lead-amount" typeof="gp:Amount">
-  <td class="stored" contenteditable="false" property="gp:pollutedby" resource="http://dbpedia.org/resource/Lead" typeof="dbr:Matter">Свинец</td>
-  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">24.0</td>
-  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en">PPM</td>
-</tr>
-
-<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0215-Niobium-amount" typeof="gp:Amount">
-  <td class="stored" contenteditable="false" property="gp:pollutedby" resource="http://dbpedia.org/resource/Niobium" typeof="dbr:Matter">Ниобий</td>
-  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">8.1</td>
-  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en">PPM</td>
-</tr>
-
-<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0215-Zirconium-amount" typeof="gp:Amount">
-  <td class="stored" contenteditable="false" property="gp:pollutedby" resource="http://dbpedia.org/resource/Zirconium" typeof="dbr:Matter">Цирконий</td>
-  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">180.0</td>
-  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en">PPM</td>
-</tr>
-
-<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0215-Yttrium-amount" typeof="gp:Amount">
-  <td class="stored" contenteditable="false" property="gp:pollutedby" resource="http://dbpedia.org/resource/Yttrium" typeof="dbr:Matter">Иттрий</td>
-  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">18.0</td>
-  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en">PPM</td>
-</tr>
-
-<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0215-Strontium-amount" typeof="gp:Amount">
-  <td class="stored" contenteditable="false" property="gp:pollutedby" resource="http://dbpedia.org/resource/Strontium" typeof="dbr:Matter">Стронций</td>
-  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">298.0</td>
-  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en">PPM</td>
-</tr>
-
-<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0215-Rubidium-amount" typeof="gp:Amount">
-  <td class="stored" contenteditable="false" property="gp:pollutedby" resource="http://dbpedia.org/resource/Rubidium" typeof="dbr:Matter">Рубидий</td>
-  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">84.0</td>
-  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en">PPM</td>
-</tr>
-
-<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0215-Barium-amount" typeof="gp:Amount">
-  <td class="stored" contenteditable="false" property="gp:pollutedby" resource="http://dbpedia.org/resource/Barium" typeof="dbr:Matter">Барий</td>
-  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">675.0</td>
-  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en">PPM</td>
-</tr>
-
-<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0215-Lanthanum-amount" typeof="gp:Amount">
-  <td class="stored" contenteditable="false" property="gp:pollutedby" resource="http://dbpedia.org/resource/Lanthanum" typeof="dbr:Matter">Лантан</td>
-  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">33.0</td>
-  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en">PPM</td>
-</tr>
-
-<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0215-Cerium-amount" typeof="gp:Amount">
-  <td class="stored" contenteditable="false" property="gp:pollutedby" resource="http://dbpedia.org/resource/Cerium" typeof="dbr:Matter">Церий</td>
+<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0211-Cobalt-amount" typeof="gp:Amount">
+  <td class="stored" contenteditable="false" property="gp:pollutedBy" resource="http://dbpedia.org/resource/Cobalt" typeof="dbr:Matter">РљРѕР±Р°Р»СЊС‚</td>
   <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">29.0</td>
-  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en">PPM</td>
+  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en" lang="en">PPM</td>
 </tr>
 
-<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0215-Neodymium-amount" typeof="gp:Amount">
-  <td class="stored" contenteditable="false" property="gp:pollutedby" resource="http://dbpedia.org/resource/Neodymium" typeof="dbr:Matter">Неодим</td>
-  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">14.0</td>
-  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en">PPM</td>
+<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0211-Nickel-amount" typeof="gp:Amount">
+  <td class="stored" contenteditable="false" property="gp:pollutedBy" resource="http://dbpedia.org/resource/Nickel" typeof="dbr:Matter">РќРёРєРµР»СЊ</td>
+  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">36.0</td>
+  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en" lang="en">PPM</td>
 </tr>
 
-<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0215-Thorium-amount" typeof="gp:Amount">
-  <td class="stored" contenteditable="false" property="gp:pollutedby" resource="http://dbpedia.org/resource/Thorium" typeof="dbr:Matter">Торий</td>
-  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">6.5</td>
-  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en">PPM</td>
+<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0211-Copper-amount" typeof="gp:Amount">
+  <td class="stored" contenteditable="false" property="gp:pollutedBy" resource="http://dbpedia.org/resource/Copper" typeof="dbr:Matter">РњРµРґСЊ</td>
+  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">36.0</td>
+  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en" lang="en">PPM</td>
+</tr>
+
+<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0211-Zinc-amount" typeof="gp:Amount">
+  <td class="stored" contenteditable="false" property="gp:pollutedBy" resource="http://dbpedia.org/resource/Zinc" typeof="dbr:Matter">Р¦РёРЅРє</td>
+  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">106.0</td>
+  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en" lang="en">PPM</td>
+</tr>
+
+<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0211-Gallium-amount" typeof="gp:Amount">
+  <td class="stored" contenteditable="false" property="gp:pollutedBy" resource="http://dbpedia.org/resource/Gallium" typeof="dbr:Matter">Р“Р°Р»Р»РёР№</td>
+  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">11.0</td>
+  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en" lang="en">PPM</td>
+</tr>
+
+<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0211-Lead-amount" typeof="gp:Amount">
+  <td class="stored" contenteditable="false" property="gp:pollutedBy" resource="http://dbpedia.org/resource/Lead" typeof="dbr:Matter">РЎРІРёРЅРµС†</td>
+  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">16.0</td>
+  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en" lang="en">PPM</td>
+</tr>
+
+<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0211-Arsenic-amount" typeof="gp:Amount">
+  <td class="stored" contenteditable="false" property="gp:pollutedBy" resource="http://dbpedia.org/resource/Arsenic" typeof="dbr:Matter">РњС‹С€СЊСЏРє</td>
+  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">5.7</td>
+  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en" lang="en">PPM</td>
+</tr>
+
+<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0211-Niobium-amount" typeof="gp:Amount">
+  <td class="stored" contenteditable="false" property="gp:pollutedBy" resource="http://dbpedia.org/resource/Niobium" typeof="dbr:Matter">РќРёРѕР±РёР№</td>
+  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">7.7</td>
+  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en" lang="en">PPM</td>
+</tr>
+
+<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0211-Zirconium-amount" typeof="gp:Amount">
+  <td class="stored" contenteditable="false" property="gp:pollutedBy" resource="http://dbpedia.org/resource/Zirconium" typeof="dbr:Matter">Р¦РёСЂРєРѕРЅРёР№</td>
+  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">155.0</td>
+  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en" lang="en">PPM</td>
+</tr>
+
+<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0211-Yttrium-amount" typeof="gp:Amount">
+  <td class="stored" contenteditable="false" property="gp:pollutedBy" resource="http://dbpedia.org/resource/Yttrium" typeof="dbr:Matter">РС‚С‚СЂРёР№</td>
+  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">17.0</td>
+  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en" lang="en">PPM</td>
+</tr>
+
+<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0211-Strontium-amount" typeof="gp:Amount">
+  <td class="stored" contenteditable="false" property="gp:pollutedBy" resource="http://dbpedia.org/resource/Strontium" typeof="dbr:Matter">РЎС‚СЂРѕРЅС†РёР№</td>
+  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">383.0</td>
+  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en" lang="en">PPM</td>
+</tr>
+
+<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0211-Rubidium-amount" typeof="gp:Amount">
+  <td class="stored" contenteditable="false" property="gp:pollutedBy" resource="http://dbpedia.org/resource/Rubidium" typeof="dbr:Matter">Р СѓР±РёРґРёР№</td>
+  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">47.0</td>
+  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en" lang="en">PPM</td>
+</tr>
+
+<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0211-Barium-amount" typeof="gp:Amount">
+  <td class="stored" contenteditable="false" property="gp:pollutedBy" resource="http://dbpedia.org/resource/Barium" typeof="dbr:Matter">Р‘Р°СЂРёР№</td>
+  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">591.0</td>
+  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en" lang="en">PPM</td>
+</tr>
+
+<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0211-Lanthanum-amount" typeof="gp:Amount">
+  <td class="stored" contenteditable="false" property="gp:pollutedBy" resource="http://dbpedia.org/resource/Lanthanum" typeof="dbr:Matter">Р›Р°РЅС‚Р°РЅ</td>
+  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">30.0</td>
+  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en" lang="en">PPM</td>
+</tr>
+
+<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0211-Cerium-amount" typeof="gp:Amount">
+  <td class="stored" contenteditable="false" property="gp:pollutedBy" resource="http://dbpedia.org/resource/Cerium" typeof="dbr:Matter">Р¦РµСЂРёР№</td>
+  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">32.0</td>
+  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en" lang="en">PPM</td>
+</tr>
+
+<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0211-Neodymium-amount" typeof="gp:Amount">
+  <td class="stored" contenteditable="false" property="gp:pollutedBy" resource="http://dbpedia.org/resource/Neodymium" typeof="dbr:Matter">РќРµРѕРґРёРј</td>
+  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">18.0</td>
+  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en" lang="en">PPM</td>
+</tr>
+
+<tr property="gp:contains" class="copyable" resource="http://irnok.net/ontology/database/UGS-0211-Thorium-amount" typeof="gp:Amount">
+  <td class="stored" contenteditable="false" property="gp:pollutedBy" resource="http://dbpedia.org/resource/Thorium" typeof="dbr:Matter">РўРѕСЂРёР№</td>
+  <td class="edited stored cleared" contenteditable="false" property="gp:amount" datatype="xsd:float" style="background-color: white;">5.3</td>
+  <td property="gp:unit" resource="http://irnok.net/ontology/geopollution#PartsPerMillion" xml:lang="en" lang="en">PPM</td>
 </tr>
 
     </tbody>

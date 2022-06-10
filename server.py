@@ -21,10 +21,10 @@ app = Flask(__name__)
 BASE_URL = "http://localhost:5000/static/"
 DISTILLER_URL = "http://rdf.greggkellogg.net/distiller"
 
-#if os.system == "nt":
-KG_FILE_DIR = "..\\vkr\\"
-#else:
- #   KG_FILE_DIR = "../GeoGisKG/"
+if os.system == "nt":
+    KG_FILE_DIR = "..\\vkr\\"
+else:
+    KG_FILE_DIR = "../GeoGisKG/"
 
 HTML_DEF = """<html>
  <head>
@@ -261,7 +261,7 @@ def sampe_edit():
 def save():
     js = request.json
     html=js["html"]
-    uri =js["uri"]
+    uri =URIRef(js["uri"])
 
 
     # print(html)
@@ -285,17 +285,19 @@ def save():
 
     delq=DELETE_AMOUNTS.replace("@DELETEE@", deletee).replace("@WHERE@", where)
     print(delq)
+    print(uri, type(uri))
+
+    g.serialize(destination=KG_FN+"-o", encoding="utf8", format="turtle")
+
     g.update(delq,
              initBindings={"probe": uri})
-    # binds(g)
+
+    g.serialize(destination=KG_FN+"-d", encoding="utf8", format="turtle")
     g.parse(ss)
-    g.serialize(destination=KG_FN, encoding="utf8", format="turtle")
-    #msgs = js["messages"]
-    #answer = {"result": "OK", "messages": msgs}
-    #return jsonify(answer)
 
+    # KG_FILENAME
+    g.serialize(destination=KG_FN+"-a", encoding="utf8", format="turtle")
 
-
-
-
-
+    # msgs = js["messages"]
+    answer = {"result": "OK", "message": "Успешно сохранено!"}
+    return jsonify(answer)
