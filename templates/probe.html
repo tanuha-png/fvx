@@ -1,15 +1,5 @@
 <!DOCTYPE xhtml>
 
-<!--
-{% extends 'base.html' %}
-
-{% block body %}
-<script>
-let d = window.location.href.split("/").pop();
-document.body.innerHTML = "<h1>Данные о загрязнении " + d + "</h1>"
-</script>
--->
-
 <html xmlns=http://www.w3.org/1999/xhtml
       xmlns:xml=http://www.w3.org/XML/1998/namespace>
 <head>
@@ -24,10 +14,10 @@ document.body.innerHTML = "<h1>Данные о загрязнении " + d + "<
  div#table {
     width: 60%; /* Ширина */
     text-align: center;
-    margin-left:200px; }
+    margin-left:250px; }
 
  div#button {
-    margin-left:960px;
+    margin-left:800px;
     padding: 15px;}
 
  h1 {
@@ -50,7 +40,6 @@ document.body.innerHTML = "<h1>Данные о загрязнении " + d + "<
         });
       };
 
-
       function savedata() {
         var items = [];
 
@@ -65,7 +54,7 @@ document.body.innerHTML = "<h1>Данные о загрязнении " + d + "<
           dataType: "json"
         }).done(function (data) {
           $("#messageBox").text(data);
-        });
+        });w
       };
 
       $(document).ready(function(){
@@ -93,8 +82,8 @@ document.body.innerHTML = "<h1>Данные о загрязнении " + d + "<
   <h1>Данные о пробе <span property="rdfs:label">{{probe_name}}</span></h1>"
   <div id="messageBox"></div>
 <div id="button" class="btn-group" role="group" >
-  <button id="editor" type="button" class="btn btn-outline-success">Редактировать</button>
-  <button id="save" type="button" class="btn btn-success">Сохранить</button>
+  <button id="editor" type="button" class="btn btn-success">Редактировать</button>
+  <button id="save" type="button" class="btn btn-outline-success">Сохранить</button>
   <button id="copy" type="button" class="btn btn-success">Добавить строку</button>
 </div>
 
@@ -134,4 +123,5 @@ document.body.innerHTML = "<h1>Данные о загрязнении " + d + "<
     </table>
 </div>
 
-{% endblock %}
+</body>
+</html>
