@@ -177,16 +177,16 @@ def load_names():
 load_names()
 
 
-def getsamplesfromfile():
-    results = KG.query(GET_SAMPLES)
-    return results
+#def getsamplesfromfile():
+ #   results = KG.query(GET_SAMPLES)
+  #  return results
 
 
 @app.route('/samples')
 def sample_list():
     #probes = getsamplesfromsite("http://irnok.net:3030/sparql")
-    probes = getsamplesfromfile()
-    pprint(list(probes))
+    probes = KG.query(GET_SAMPLES)
+    #pprint(list(probes))
     return render_template("samples.html", probes=probes)
 
 
@@ -245,11 +245,10 @@ def sampe_edit():
 
     ss = io.BytesIO()
     r.serialize(destination=ss, format='json')
-
     ss.seek(0, 0)
     js = json.load(ss)
     data = js["results"]["bindings"]
-    # pprint(data)
+    #pprint(data)
     name = data[0]["probe_name"]["value"] if len(data)>0 else ''
     return render_template("probe.html",
                            data=data,
@@ -291,19 +290,12 @@ def save():
     # binds(g)
     g.parse(ss)
     g.serialize(destination=KG_FN, encoding="utf8", format="turtle")
-    msgs = js["messages"]
-    answer = {"result": "OK", "messages": msgs}
-    return jsonify(answer)
+    #msgs = js["messages"]
+    #answer = {"result": "OK", "messages": msgs}
+    #return jsonify(answer)
 
 
 
-def parseXML():
-    root = etree.iterparse(r'C:\Users\fvx\y.xml')
-    for element in etree.iterparse(root, encoding='utf8'):
-        print((element.tag, element.text))
 
-
-P = Graph()
-P.parseXML()
 
 

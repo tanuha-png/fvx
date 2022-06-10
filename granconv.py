@@ -1,9 +1,10 @@
 from lxml import etree
 from rdflib import (Graph, BNode, Namespace, RDF, RDFS, FOAF, Literal)
 from uuid import uuid1
+from io import StringIO
 from pprint import pprint
 
-root = etree.iterparse("./Ярки.xml",
+root = etree.iterparse("..\\fvx\\Ярки.xml",
                        events=('start',))
 
 DB = Namespace("http://irnok.net/database/granulometric/")
@@ -13,6 +14,8 @@ DD = Namespace("http://irnok.net/ontology/granulometric/")
 G = Graph()
 G.bind("db", DB)
 G.bind("dd", DD)
+
+GG = Graph()
 
 def uuid(NS):
     uu = uuid1()
@@ -39,6 +42,10 @@ for ev, node in root:
         typ = typ.replace("ListFullAllInherited", "")
         G.add((pat, RDF.type, DD[typ]))
         continue
+    elif node.tag.endswith("XML"):
+        node.text = etree.iterparse(root)
+        GG.add((pat, RDF.type, DD["XML"]))
+
 
     v = node.text
 
