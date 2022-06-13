@@ -21,10 +21,10 @@ app = Flask(__name__)
 BASE_URL = "http://localhost:5000/static/"
 DISTILLER_URL = "http://rdf.greggkellogg.net/distiller"
 
-#if os.system == "nt":
-KG_FILE_DIR = "..\\vkr\\"
-#else:
- #   KG_FILE_DIR = "../GeoGisKG/"
+if os.system == "nt":
+   KG_FILE_DIR = "..\\vkr\\"
+else:
+   KG_FILE_DIR = "../nikitin-vkr/"
 
 HTML_DEF = """<html>
  <head>
